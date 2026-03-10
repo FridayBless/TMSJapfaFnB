@@ -1,0 +1,299 @@
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#13ec6a",
+            "background-light": "#f6f8f7",
+            "background-dark": "#102217",
+            "charcoal": "#1a1c1b",
+          },
+          fontFamily: {
+            "display": ["Inter"]
+          },
+          borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+        },
+      },
+    }
+  </script>
+<title>Admin Sales Billing Confirmation</title>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100">
+<div class="flex h-screen overflow-hidden">
+<!-- Sidebar -->
+<aside class="w-72 bg-charcoal text-slate-300 flex flex-col shrink-0 border-r border-slate-800">
+<div class="p-6 flex items-center gap-3">
+<div class="bg-primary rounded-lg p-2">
+<span class="material-symbols-outlined text-background-dark text-2xl font-bold">hub</span>
+</div>
+<div>
+<h1 class="text-white text-lg font-bold leading-tight">JAPFA Logix</h1>
+<p class="text-slate-500 text-xs font-medium">Logistics Management</p>
+</div>
+</div>
+<div class="px-4 py-2">
+<div class="flex items-center gap-3 px-3 py-4 border-b border-slate-800 mb-4">
+<div class="size-10 rounded-full bg-slate-700 flex items-center justify-center overflow-hidden border border-slate-600">
+<img class="w-full h-full object-cover" data-alt="User profile avatar placeholder" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrlPUitbUSA9KyCLgOrl3afObCZJAsUIhURf3GO_MRgNQ7MhmVZLWX6S7n8A_qY-R4Nijc3rWb3zmK9FF1RB5ZDp1QUxnC9-IMrrad3hZeJpwtFNgsQ34IHChiFvB9xYrXGZWDho6X3LcZ_NWiiDzFrR2QFhtCe5qOYc41cbw_pxgO9ogSDeKI5X4H5esDPfsjXJMXbozPmnYLbiwonN9NbWXkEZqF1voksythH1fI2irvqGT3yXC2uLOP6iXxWrIKbG8sQF7CUTE"/>
+</div>
+<div>
+<p class="text-white text-sm font-semibold">Admin Sales</p>
+<p class="text-slate-500 text-xs">Sales Department</p>
+</div>
+</div>
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined">description</span>
+<span class="text-sm font-medium">Admin POD</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary/10 text-primary border border-primary/20 transition-colors" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="text-sm font-medium">Konfirmasi Penagihan</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-slate-800 transition-colors text-slate-400" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="text-sm font-medium">Laporan Keuangan</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-slate-800 transition-colors text-slate-400" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</a>
+</nav>
+</div>
+<div class="mt-auto p-4 border-t border-slate-800">
+<a class="flex items-center gap-3 px-3 py-2 text-slate-400 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="text-sm font-medium">Sign Out</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col overflow-hidden">
+<!-- Header -->
+<header class="h-16 bg-white dark:bg-background-dark border-b border-slate-200 dark:border-slate-800 flex items-center justify-between px-8 shrink-0">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-slate-400">chevron_right</span>
+<h2 class="text-lg font-bold text-slate-800 dark:text-slate-100 uppercase tracking-wide">Konfirmasi Penagihan</h2>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative flex items-center bg-slate-100 dark:bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800">
+<span class="material-symbols-outlined text-slate-400 text-xl mr-2">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-48 text-slate-700 dark:text-slate-300" placeholder="Cari No. PO atau Toko..." type="text"/>
+</div>
+<button class="relative p-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-colors">
+<span class="material-symbols-outlined text-2xl">notifications</span>
+<span class="absolute top-1.5 right-1.5 size-4 bg-red-500 text-white text-[10px] font-bold flex items-center justify-center rounded-full border-2 border-white dark:border-background-dark">
+              12
+            </span>
+</button>
+<div class="h-8 w-px bg-slate-200 dark:bg-slate-800"></div>
+<div class="flex items-center gap-3">
+<div class="text-right hidden md:block">
+<p class="text-xs font-bold text-slate-900 dark:text-slate-100">Budi Santoso</p>
+<p class="text-[10px] text-slate-500">Sales Admin Executive</p>
+</div>
+</div>
+</div>
+</header>
+<!-- Scrollable Container -->
+<div class="flex-1 overflow-auto p-8 space-y-6">
+<!-- Dashboard Greeting / Title -->
+<div class="flex items-end justify-between">
+<div>
+<h3 class="text-3xl font-black text-slate-900 dark:text-slate-50 tracking-tight">Inbox Penagihan</h3>
+<p class="text-slate-500 mt-1">Konfirmasi data pengiriman yang telah diverifikasi POD untuk proses penagihan (Billing).</p>
+</div>
+<div class="flex gap-2">
+<button class="flex items-center gap-2 px-4 py-2 border border-slate-200 dark:border-slate-700 rounded-lg text-sm font-semibold bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 hover:bg-slate-50">
+<span class="material-symbols-outlined text-lg">filter_list</span> Filter
+             </button>
+<button class="flex items-center gap-2 px-4 py-2 border border-slate-200 dark:border-slate-700 rounded-lg text-sm font-semibold bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 hover:bg-slate-50">
+<span class="material-symbols-outlined text-lg">download</span> Export
+             </button>
+</div>
+</div>
+<!-- Notification Banner for Verified POD -->
+<div class="bg-primary/5 border border-primary/20 rounded-xl p-4 flex items-center gap-4">
+<div class="bg-primary rounded-full p-2">
+<span class="material-symbols-outlined text-background-dark">verified</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-bold text-slate-800 dark:text-slate-100">12 New POD Verified</p>
+<p class="text-xs text-slate-500">Verified by Admin POD today. Ready for billing confirmation.</p>
+</div>
+<button class="text-xs font-bold text-primary hover:underline uppercase tracking-wider">Review All</button>
+</div>
+<!-- Data Grid Table -->
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-slate-50 dark:bg-slate-800/50 border-b border-slate-200 dark:border-slate-700">
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">No. PO</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Store Name</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Qty: Order vs Deliv</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Total Amount (IDR)</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider text-center">SJ Proof</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+<!-- Row 1 -->
+<tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-4">
+<span class="text-sm font-bold text-slate-900 dark:text-slate-100">PO-98213</span>
+</td>
+<td class="px-6 py-4">
+<p class="text-sm font-medium text-slate-700 dark:text-slate-300">Superindo Express</p>
+<p class="text-[10px] text-slate-400 uppercase tracking-tighter">Branch: Jakarta Selatan</p>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<span class="text-sm font-semibold text-slate-400">50</span>
+<span class="material-symbols-outlined text-xs text-slate-300">arrow_forward</span>
+<span class="text-sm font-bold text-red-500">48</span>
+<span class="text-[10px] bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 px-1.5 py-0.5 rounded ml-1">-2 Return</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-sm font-bold text-slate-900 dark:text-slate-100 font-mono">12.500.000</span>
+</td>
+<td class="px-6 py-4 text-center">
+<button class="p-2 text-primary hover:bg-primary/10 rounded-lg transition-colors group">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">image</span>
+</button>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="bg-primary hover:bg-primary/90 text-background-dark text-[11px] font-black px-4 py-2 rounded-lg transition-all shadow-lg shadow-primary/20 uppercase tracking-wider">
+                      Proses Penagihan (Billing)
+                    </button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-4">
+<span class="text-sm font-bold text-slate-900 dark:text-slate-100">PO-98214</span>
+</td>
+<td class="px-6 py-4">
+<p class="text-sm font-medium text-slate-700 dark:text-slate-300">Indomaret Point</p>
+<p class="text-[10px] text-slate-400 uppercase tracking-tighter">Branch: Tangerang City</p>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<span class="text-sm font-semibold text-slate-400">100</span>
+<span class="material-symbols-outlined text-xs text-slate-300">arrow_forward</span>
+<span class="text-sm font-bold text-primary">100</span>
+<span class="text-[10px] bg-primary/10 text-primary px-1.5 py-0.5 rounded ml-1">Full</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-sm font-bold text-slate-900 dark:text-slate-100 font-mono">25.000.000</span>
+</td>
+<td class="px-6 py-4 text-center">
+<button class="p-2 text-primary hover:bg-primary/10 rounded-lg transition-colors group">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">image</span>
+</button>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="bg-primary hover:bg-primary/90 text-background-dark text-[11px] font-black px-4 py-2 rounded-lg transition-all shadow-lg shadow-primary/20 uppercase tracking-wider">
+                      Proses Penagihan (Billing)
+                    </button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-4">
+<span class="text-sm font-bold text-slate-900 dark:text-slate-100">PO-98215</span>
+</td>
+<td class="px-6 py-4">
+<p class="text-sm font-medium text-slate-700 dark:text-slate-300">Alfamidi Utama</p>
+<p class="text-[10px] text-slate-400 uppercase tracking-tighter">Branch: Bekasi Timur</p>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<span class="text-sm font-semibold text-slate-400">75</span>
+<span class="material-symbols-outlined text-xs text-slate-300">arrow_forward</span>
+<span class="text-sm font-bold text-red-500">70</span>
+<span class="text-[10px] bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 px-1.5 py-0.5 rounded ml-1">-5 Return</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-sm font-bold text-slate-900 dark:text-slate-100 font-mono">18.250.000</span>
+</td>
+<td class="px-6 py-4 text-center">
+<button class="p-2 text-primary hover:bg-primary/10 rounded-lg transition-colors group">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">image</span>
+</button>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="bg-primary hover:bg-primary/90 text-background-dark text-[11px] font-black px-4 py-2 rounded-lg transition-all shadow-lg shadow-primary/20 uppercase tracking-wider">
+                      Proses Penagihan (Billing)
+                    </button>
+</td>
+</tr>
+<!-- Row 4 (Example of Updated Status) -->
+<tr class="bg-slate-50/20 dark:bg-slate-800/10">
+<td class="px-6 py-4 opacity-50">
+<span class="text-sm font-bold text-slate-900 dark:text-slate-100">PO-98216</span>
+</td>
+<td class="px-6 py-4 opacity-50">
+<p class="text-sm font-medium text-slate-700 dark:text-slate-300">Hypermart Central</p>
+<p class="text-[10px] text-slate-400 uppercase tracking-tighter">Branch: Bogor City</p>
+</td>
+<td class="px-6 py-4 opacity-50">
+<div class="flex items-center gap-2">
+<span class="text-sm font-semibold text-slate-400">200</span>
+<span class="material-symbols-outlined text-xs text-slate-300">arrow_forward</span>
+<span class="text-sm font-bold text-primary">200</span>
+</div>
+</td>
+<td class="px-6 py-4 opacity-50">
+<span class="text-sm font-bold text-slate-900 dark:text-slate-100 font-mono">50.000.000</span>
+</td>
+<td class="px-6 py-4 text-center">
+<button class="p-2 text-slate-400 rounded-lg">
+<span class="material-symbols-outlined">image</span>
+</button>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400">
+<span class="material-symbols-outlined text-sm">check_circle</span>
+<span class="text-[10px] font-bold uppercase tracking-widest leading-none">Closed / Payment Updated</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="px-6 py-4 bg-slate-50 dark:bg-slate-800/30 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between">
+<span class="text-xs font-medium text-slate-500">Showing 1 to 4 of 48 entries</span>
+<div class="flex items-center gap-1">
+<button class="p-1.5 rounded hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-500 transition-colors">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="size-8 rounded bg-primary text-background-dark text-xs font-bold shadow-sm shadow-primary/20">1</button>
+<button class="size-8 rounded hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-400 text-xs font-bold transition-colors">2</button>
+<button class="size-8 rounded hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-400 text-xs font-bold transition-colors">3</button>
+<button class="p-1.5 rounded hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-500 transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

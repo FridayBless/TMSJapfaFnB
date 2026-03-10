@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Daily Logistics KPI Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ff7b00",
+                        "background-light": "#f8f7f5",
+                        "background-dark": "#121212",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
+<div class="flex h-screen overflow-hidden">
+<!-- Sidebar -->
+<aside class="w-64 bg-background-dark text-white flex flex-col shrink-0">
+<div class="p-6">
+<div class="flex items-center gap-3 mb-8">
+<div class="size-8 bg-primary rounded flex items-center justify-center text-white">
+<span class="material-symbols-outlined">local_shipping</span>
+</div>
+<h1 class="text-lg font-bold tracking-tight">Logistics Admin</h1>
+</div>
+<nav class="flex flex-col gap-1">
+<div class="flex items-center gap-3 px-4 py-3 rounded-lg bg-primary text-white cursor-pointer transition-colors">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</div>
+<div class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 cursor-pointer transition-colors">
+<span class="material-symbols-outlined">package_2</span>
+<span class="text-sm font-medium">Shipments</span>
+</div>
+<div class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 cursor-pointer transition-colors">
+<span class="material-symbols-outlined">fire_truck</span>
+<span class="text-sm font-medium">Fleet</span>
+</div>
+<div class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 cursor-pointer transition-colors">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="text-sm font-medium">Inventory</span>
+</div>
+<div class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 cursor-pointer transition-colors">
+<span class="material-symbols-outlined">analytics</span>
+<span class="text-sm font-medium">Reports</span>
+</div>
+<div class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 cursor-pointer transition-colors">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</div>
+</nav>
+</div>
+<div class="mt-auto p-4 border-t border-white/10">
+<button class="w-full bg-primary/20 hover:bg-primary/30 text-primary font-bold py-3 rounded-lg flex items-center justify-center gap-2 transition-all">
+<span class="material-symbols-outlined">add</span>
+<span class="text-sm">New Shipment</span>
+</button>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 overflow-y-auto flex flex-col bg-slate-50">
+<!-- Header -->
+<header class="bg-white border-b border-slate-200 px-8 py-4 flex items-center justify-between sticky top-0 z-10">
+<div class="flex items-center gap-6">
+<h2 class="text-xl font-bold text-slate-900">Daily Logistics KPI Dashboard</h2>
+<div class="flex items-center gap-4 text-slate-500 text-sm">
+<div class="flex items-center gap-1.5 px-3 py-1 bg-green-50 text-green-700 rounded-full font-medium border border-green-100">
+<span class="size-2 bg-green-500 rounded-full"></span>
+                        Live Status
+                    </div>
+<span>Oct 24, 2023</span>
+<span class="text-slate-300">|</span>
+<span>14:30 PM</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="pl-10 pr-4 py-2 bg-slate-100 border-none rounded-lg text-sm w-64 focus:ring-primary focus:bg-white transition-all" placeholder="Search orders..." type="text"/>
+</div>
+<button class="p-2 text-slate-500 hover:bg-slate-100 rounded-full relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1 right-1 size-2 bg-primary rounded-full border-2 border-white"></span>
+</button>
+<div class="flex items-center gap-3 pl-4 border-l border-slate-200">
+<div class="text-right">
+<p class="text-sm font-bold text-slate-900 leading-none">Admin User</p>
+<p class="text-xs text-slate-500">Global Operations</p>
+</div>
+<img class="size-9 rounded-full bg-slate-200 object-cover" data-alt="Headshot of a professional logistics manager" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKivMM2wLsB945bEfzHNeT6fJE8S-T1gp4Ao6Mnk91eggiKgfrf9rnB1gfP0rhaOVGIFwZ2HIVSU6ytcbHfHy5cj84rfNyBYJJ96P_rT7TiHaWUVQn8HGl9FIL3FOmS-agGeD5cfe4dK40kyIXdWLxdeVDo35Me56ItW9nHaVZzBQKsNSbARV4Gqz0QugngVUW0UTGkCQD8D3GeePjFL8RaJKaowtppdciZUIpogloZeVKqhxHe5Po7wSrhRWtJBwJmQmJMyY8WMs"/>
+</div>
+</div>
+</header>
+<!-- Content Body -->
+<div class="p-8 flex flex-col gap-8">
+<!-- KPI Cards Row -->
+<div class="grid grid-cols-4 gap-6">
+<div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+<div class="flex justify-between items-start mb-4">
+<span class="text-sm font-medium text-slate-500 uppercase tracking-wider">OTIF Rate</span>
+<div class="p-2 bg-primary/10 rounded-lg text-primary">
+<span class="material-symbols-outlined">timer</span>
+</div>
+</div>
+<div class="flex items-baseline gap-2">
+<h3 class="text-3xl font-bold text-slate-900">94.5%</h3>
+<span class="text-green-600 text-sm font-bold flex items-center">
+<span class="material-symbols-outlined text-xs">arrow_upward</span> 2.1%
+                        </span>
+</div>
+<p class="text-xs text-slate-400 mt-2">vs. last week target (92%)</p>
+</div>
+<div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+<div class="flex justify-between items-start mb-4">
+<span class="text-sm font-medium text-slate-500 uppercase tracking-wider">Product Rejection</span>
+<div class="p-2 bg-red-50 rounded-lg text-red-500">
+<span class="material-symbols-outlined">error</span>
+</div>
+</div>
+<div class="flex items-baseline gap-2">
+<h3 class="text-3xl font-bold text-slate-900">1.2%</h3>
+<span class="text-red-500 text-sm font-bold flex items-center">
+<span class="material-symbols-outlined text-xs">arrow_downward</span> 0.4%
+                        </span>
+</div>
+<p class="text-xs text-slate-400 mt-2">Reduction in returns</p>
+</div>
+<div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+<div class="flex justify-between items-start mb-4">
+<span class="text-sm font-medium text-slate-500 uppercase tracking-wider">Total Shipments</span>
+<div class="p-2 bg-blue-50 rounded-lg text-blue-500">
+<span class="material-symbols-outlined">package</span>
+</div>
+</div>
+<div class="flex items-baseline gap-2">
+<h3 class="text-3xl font-bold text-slate-900">1,420</h3>
+<span class="text-slate-400 text-sm font-medium uppercase">orders</span>
+</div>
+<p class="text-xs text-slate-400 mt-2">+150 since last update</p>
+</div>
+<div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+<div class="flex justify-between items-start mb-4">
+<span class="text-sm font-medium text-slate-500 uppercase tracking-wider">Avg. Loading Time</span>
+<div class="p-2 bg-orange-50 rounded-lg text-orange-500">
+<span class="material-symbols-outlined">forklift</span>
+</div>
+</div>
+<div class="flex items-baseline gap-2">
+<h3 class="text-3xl font-bold text-slate-900">35 <span class="text-xl">mins</span></h3>
+</div>
+<p class="text-xs text-slate-400 mt-2">Optimizing loading bay 4</p>
+</div>
+</div>
+<!-- Middle Section Charts -->
+<div class="flex gap-6">
+<!-- Large Bar Chart -->
+<div class="w-[70%] bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+<div class="flex justify-between items-center mb-8">
+<div>
+<h3 class="text-lg font-bold text-slate-900">Hourly Delivery Volume</h3>
+<p class="text-sm text-slate-500">Peak: 240 orders/hr at 18:00</p>
+</div>
+<select class="text-xs font-bold bg-slate-50 border-slate-200 rounded-lg focus:ring-primary">
+<option>Last 24 Hours</option>
+<option>Last 7 Days</option>
+</select>
+</div>
+<div class="h-[250px] flex items-end gap-4 px-4">
+<div class="flex-1 flex flex-col items-center gap-2 group">
+<div class="w-full bg-slate-100 group-hover:bg-primary/20 rounded-t-md transition-all relative" style="height: 40%;">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-[10px] py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity">96</div>
+</div>
+<span class="text-[10px] font-bold text-slate-400">08:00</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2 group">
+<div class="w-full bg-slate-100 group-hover:bg-primary/20 rounded-t-md transition-all relative" style="height: 65%;">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-[10px] py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity">156</div>
+</div>
+<span class="text-[10px] font-bold text-slate-400">10:00</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2 group">
+<div class="w-full bg-slate-100 group-hover:bg-primary/20 rounded-t-md transition-all relative" style="height: 50%;">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-[10px] py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity">120</div>
+</div>
+<span class="text-[10px] font-bold text-slate-400">12:00</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2 group">
+<div class="w-full bg-slate-100 group-hover:bg-primary/20 rounded-t-md transition-all relative" style="height: 35%;">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-[10px] py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity">84</div>
+</div>
+<span class="text-[10px] font-bold text-slate-400">14:00</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2 group">
+<div class="w-full bg-slate-100 group-hover:bg-primary/20 rounded-t-md transition-all relative" style="height: 45%;">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-[10px] py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity">108</div>
+</div>
+<span class="text-[10px] font-bold text-slate-400">16:00</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2 group">
+<div class="w-full bg-primary rounded-t-md transition-all relative" style="height: 100%;">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-[10px] py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity">240</div>
+</div>
+<span class="text-[10px] font-bold text-slate-900">18:00</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2 group">
+<div class="w-full bg-slate-100 group-hover:bg-primary/20 rounded-t-md transition-all relative" style="height: 30%;">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-[10px] py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity">72</div>
+</div>
+<span class="text-[10px] font-bold text-slate-400">20:00</span>
+</div>
+</div>
+</div>
+<!-- Circular Gauge Chart -->
+<div class="w-[30%] bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col">
+<h3 class="text-lg font-bold text-slate-900 mb-2">Fleet Utilization</h3>
+<p class="text-sm text-slate-500 mb-8">Daily average across 450 vehicles</p>
+<div class="relative flex-1 flex items-center justify-center">
+<!-- Simulated Gauge -->
+<div class="size-48 rounded-full border-[12px] border-slate-100 flex flex-col items-center justify-center relative">
+<div class="absolute inset-0 rounded-full border-[12px] border-primary border-r-transparent border-b-transparent rotate-[45deg]"></div>
+<span class="text-4xl font-black text-slate-900">82%</span>
+<span class="text-xs font-bold text-primary uppercase tracking-widest mt-1">High Demand</span>
+</div>
+</div>
+<div class="mt-6 space-y-2">
+<div class="flex justify-between text-xs">
+<span class="text-slate-500">Active Trucks</span>
+<span class="font-bold text-slate-900">369 / 450</span>
+</div>
+<div class="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden">
+<div class="h-full bg-primary" style="width: 82%;"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Section -->
+<div class="grid grid-cols-2 gap-6">
+<!-- Rejection Reasons -->
+<div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+<div class="flex justify-between items-center mb-6">
+<h3 class="text-lg font-bold text-slate-900">Top Rejection Reasons</h3>
+<span class="text-xs text-slate-400 font-medium">Month to Date</span>
+</div>
+<div class="space-y-6">
+<div>
+<div class="flex justify-between items-end mb-2">
+<span class="text-sm font-medium text-slate-700">Damaged Goods</span>
+<span class="text-sm font-bold text-slate-900">60%</span>
+</div>
+<div class="h-2 bg-slate-100 rounded-full overflow-hidden">
+<div class="h-full bg-red-500" style="width: 60%;"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between items-end mb-2">
+<span class="text-sm font-medium text-slate-700">Wrong Item</span>
+<span class="text-sm font-bold text-slate-900">25%</span>
+</div>
+<div class="h-2 bg-slate-100 rounded-full overflow-hidden">
+<div class="h-full bg-orange-400" style="width: 25%;"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between items-end mb-2">
+<span class="text-sm font-medium text-slate-700">Customer Not Home</span>
+<span class="text-sm font-bold text-slate-900">15%</span>
+</div>
+<div class="h-2 bg-slate-100 rounded-full overflow-hidden">
+<div class="h-full bg-slate-400" style="width: 15%;"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Real-time Alerts Feed -->
+<div class="bg-white rounded-xl border border-slate-200 shadow-sm flex flex-col h-[320px]">
+<div class="p-6 border-b border-slate-100 flex justify-between items-center bg-slate-50/50 rounded-t-xl">
+<h3 class="text-lg font-bold text-slate-900">Real-time Alerts</h3>
+<span class="px-2 py-0.5 bg-primary text-white text-[10px] font-black rounded uppercase">Live</span>
+</div>
+<div class="flex-1 overflow-y-auto p-2 space-y-2">
+<div class="p-4 rounded-lg bg-orange-50 border-l-4 border-primary flex gap-4">
+<span class="material-symbols-outlined text-primary">warning</span>
+<div>
+<p class="text-sm font-bold text-slate-900">TRK-05 Delayed</p>
+<p class="text-xs text-slate-600">Heavy traffic detected in Depok cluster. ETA +45m.</p>
+<span class="text-[10px] text-slate-400 mt-1 block">2 mins ago</span>
+</div>
+</div>
+<div class="p-4 rounded-lg hover:bg-slate-50 transition-colors flex gap-4 border-l-4 border-transparent">
+<span class="material-symbols-outlined text-green-500">check_circle</span>
+<div>
+<p class="text-sm font-bold text-slate-900">OTIF Target Reached</p>
+<p class="text-xs text-slate-600">Zone A has reached the daily target of 95% OTIF.</p>
+<span class="text-[10px] text-slate-400 mt-1 block">15 mins ago</span>
+</div>
+</div>
+<div class="p-4 rounded-lg hover:bg-slate-50 transition-colors flex gap-4 border-l-4 border-transparent">
+<span class="material-symbols-outlined text-blue-500">info</span>
+<div>
+<p class="text-sm font-bold text-slate-900">New Driver Assigned</p>
+<p class="text-xs text-slate-600">John Smith has been assigned to Route B-12.</p>
+<span class="text-[10px] text-slate-400 mt-1 block">45 mins ago</span>
+</div>
+</div>
+<div class="p-4 rounded-lg hover:bg-slate-50 transition-colors flex gap-4 border-l-4 border-transparent">
+<span class="material-symbols-outlined text-slate-400">person_off</span>
+<div>
+<p class="text-sm font-bold text-slate-900">Shift Change</p>
+<p class="text-xs text-slate-600">Warehouse Team C has clocked out. Team D taking over.</p>
+<span class="text-[10px] text-slate-400 mt-1 block">1 hour ago</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

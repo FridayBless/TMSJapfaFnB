@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Admin POD Historical Data &amp; Archive</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec7f13",
+                        "background-light": "#f8f7f6",
+                        "background-dark": "#221910",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="flex h-screen overflow-hidden">
+<!-- Sidebar -->
+<aside class="w-64 bg-slate-900 dark:bg-black flex-shrink-0 flex flex-col">
+<div class="p-6 flex items-center gap-3">
+<div class="size-8 bg-primary rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-white">shield_person</span>
+</div>
+<div>
+<h1 class="text-white text-sm font-bold leading-tight">Admin POD</h1>
+<p class="text-slate-400 text-xs">JAPFA Portal</p>
+</div>
+</div>
+<nav class="flex-1 px-4 py-4 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 bg-primary text-white rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">archive</span>
+<span class="text-sm font-medium">Riwayat &amp; Arsip</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="text-sm font-medium">Manajemen User</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-sm font-medium">Pengaturan</span>
+</a>
+</nav>
+<div class="p-4 mt-auto">
+<a class="flex items-center gap-3 px-3 py-2 text-slate-400 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">help_center</span>
+<span class="text-sm font-medium">Bantuan</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col overflow-y-auto">
+<!-- Header -->
+<header class="h-16 border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark flex items-center justify-between px-8 sticky top-0 z-10">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">history</span>
+<h2 class="text-lg font-bold">Riwayat &amp; Arsip Dokumen</h2>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-2 border-2 border-primary text-primary px-4 py-2 rounded-lg font-bold text-sm hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined text-sm">download</span>
+                        Unduh Laporan (Excel/PDF)
+                    </button>
+<div class="size-10 rounded-full border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 bg-cover bg-center" data-alt="Admin user profile picture profile circle" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBwM80cgau3Ta4_2gngY7qblBk1wrKOBC3Qp_WGh0syVGelETePC5Xsl5AywbYbmyB3RYvcU5rqsrh3I4-TU4pAKx3hvpK2qw5seryHs3GJ2vzuXTB8oVugrXAxpkUSHluf7Il4T9fFUFC-_7yJV3KO6yFiAF0lK82Dit57-WSBUpRS09Hp-48MiYGwJfKnn1m0FWZrJWUOduhDxgsKEF4c20gEAB5qyPJRyv9hP5l2WXnz2fS6K2OHtss2i14mnxeFt4xJVjFOdMI')"></div>
+</div>
+</header>
+<!-- Filters & Summary Section -->
+<div class="p-8 space-y-6">
+<!-- Toolbar -->
+<div class="flex flex-wrap items-center gap-4 bg-white dark:bg-slate-900 p-4 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800">
+<div class="flex flex-col gap-1 min-w-[200px]">
+<span class="text-[10px] uppercase font-bold text-slate-400">Periode</span>
+<div class="flex items-center gap-2 bg-background-light dark:bg-slate-800 px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700">
+<span class="material-symbols-outlined text-sm text-slate-500">calendar_today</span>
+<span class="text-sm font-medium">1 Aug 2026 - 31 Aug 2026</span>
+</div>
+</div>
+<div class="flex flex-col gap-1 min-w-[150px]">
+<span class="text-[10px] uppercase font-bold text-slate-400">Status</span>
+<select class="bg-background-light dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-lg text-sm font-medium focus:ring-primary focus:border-primary">
+<option>Semua Status</option>
+<option>Selesai (Success)</option>
+<option>Gagal (Failed)</option>
+</select>
+</div>
+<div class="flex-1 flex flex-col gap-1">
+<span class="text-[10px] uppercase font-bold text-slate-400">Cari Data</span>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-background-light dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-lg text-sm focus:ring-primary focus:border-primary" placeholder="Cari No. DO, Nama Toko, atau Driver..." type="text"/>
+</div>
+</div>
+</div>
+<!-- Daily Summary Card -->
+<div class="bg-primary/10 border border-primary/20 p-6 rounded-xl flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="bg-primary size-12 rounded-full flex items-center justify-center text-white">
+<span class="material-symbols-outlined">fact_check</span>
+</div>
+<div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">Aug 14, 2026</h3>
+<p class="text-slate-600 dark:text-slate-300 font-medium">145/150 (96.6%) Documents Verified. <span class="text-red-500">5 Returns</span></p>
+</div>
+</div>
+<div class="flex gap-2">
+<div class="text-right">
+<div class="text-xs text-slate-500 uppercase font-bold">Total Efisiensi</div>
+<div class="text-2xl font-black text-primary">96.6%</div>
+</div>
+</div>
+</div>
+<!-- Table Content -->
+<div class="bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-slate-50 dark:bg-slate-800/50 border-b border-slate-200 dark:border-slate-700">
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">No. Delivery Order</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Nama Toko</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Driver</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Tanggal Selesai</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Status</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Aksi</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="px-6 py-4 text-sm font-semibold text-primary">DO-2026-0814-001</td>
+<td class="px-6 py-4 text-sm">Superindo Metro Lampung</td>
+<td class="px-6 py-4 text-sm">Bambang Wijaya</td>
+<td class="px-6 py-4 text-sm">14 Aug 2026 09:12</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400">Success</span>
+</td>
+<td class="px-6 py-4">
+<button class="text-slate-400 hover:text-primary"><span class="material-symbols-outlined">visibility</span></button>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="px-6 py-4 text-sm font-semibold text-primary">DO-2026-0814-002</td>
+<td class="px-6 py-4 text-sm">Indogrosir Kemayoran</td>
+<td class="px-6 py-4 text-sm">Agus Setiawan</td>
+<td class="px-6 py-4 text-sm">14 Aug 2026 10:45</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400">Failed (Return)</span>
+</td>
+<td class="px-6 py-4">
+<button class="text-slate-400 hover:text-primary"><span class="material-symbols-outlined">visibility</span></button>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="px-6 py-4 text-sm font-semibold text-primary">DO-2026-0814-003</td>
+<td class="px-6 py-4 text-sm">Farmer's Market Serpong</td>
+<td class="px-6 py-4 text-sm">Dedi Kurniawan</td>
+<td class="px-6 py-4 text-sm">14 Aug 2026 11:30</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400">Success</span>
+</td>
+<td class="px-6 py-4">
+<button class="text-slate-400 hover:text-primary"><span class="material-symbols-outlined">visibility</span></button>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="px-6 py-4 text-sm font-semibold text-primary">DO-2026-0814-004</td>
+<td class="px-6 py-4 text-sm">Hypermart Karawaci</td>
+<td class="px-6 py-4 text-sm">Bambang Wijaya</td>
+<td class="px-6 py-4 text-sm">14 Aug 2026 13:05</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400">Success</span>
+</td>
+<td class="px-6 py-4">
+<button class="text-slate-400 hover:text-primary"><span class="material-symbols-outlined">visibility</span></button>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="px-6 py-4 text-sm font-semibold text-primary">DO-2026-0814-005</td>
+<td class="px-6 py-4 text-sm">Lotte Mart Gandaria</td>
+<td class="px-6 py-4 text-sm">Slamet Riadi</td>
+<td class="px-6 py-4 text-sm">14 Aug 2026 14:40</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400">Success</span>
+</td>
+<td class="px-6 py-4">
+<button class="text-slate-400 hover:text-primary"><span class="material-symbols-outlined">visibility</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="px-6 py-4 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between">
+<span class="text-sm text-slate-500">Menampilkan 1-10 dari 150 data</span>
+<div class="flex items-center gap-2">
+<button class="p-2 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800"><span class="material-symbols-outlined text-sm">chevron_left</span></button>
+<button class="size-8 bg-primary text-white rounded-lg text-sm font-bold">1</button>
+<button class="size-8 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg text-sm font-medium">2</button>
+<button class="size-8 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg text-sm font-medium">3</button>
+<button class="p-2 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800"><span class="material-symbols-outlined text-sm">chevron_right</span></button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

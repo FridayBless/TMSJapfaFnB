@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Fleet Health &amp; Fuel Tracking Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ff7b00",
+                        "background-light": "#f8f7f5",
+                        "background-dark": "#23190f",
+                        "sidebar-dark": "#121212"
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .active-nav { background-color: #ff7b00; color: white; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
+<div class="flex h-screen overflow-hidden">
+<!-- Sidebar -->
+<aside class="w-64 bg-sidebar-dark flex flex-col shrink-0">
+<div class="p-6">
+<div class="flex items-center gap-3 text-white">
+<span class="material-symbols-outlined text-primary text-3xl">local_shipping</span>
+<h1 class="text-xl font-bold tracking-tight">Logistics Admin</h1>
+</div>
+<p class="text-slate-500 text-xs mt-1 ml-10">Fleet Operations</p>
+</div>
+<nav class="flex-1 px-4 mt-4 space-y-2">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-white transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 active-nav rounded-lg shadow-lg shadow-primary/20" href="#">
+<span class="material-symbols-outlined">group_work</span>
+<span class="text-sm font-medium">Fleet Management</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-white transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">build</span>
+<span class="text-sm font-medium">Maintenance</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-white transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">gas_meter</span>
+<span class="text-sm font-medium">Fuel Tracking</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-white transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">assessment</span>
+<span class="text-sm font-medium">Reports</span>
+</a>
+</nav>
+<div class="p-4 mt-auto">
+<button class="w-full flex items-center justify-center gap-2 py-3 bg-primary text-white font-bold rounded-lg hover:bg-orange-600 transition-all">
+<span class="material-symbols-outlined">add</span>
+<span class="text-sm">Add Vehicle</span>
+</button>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col overflow-hidden bg-background-light dark:bg-background-dark">
+<!-- Header -->
+<header class="h-16 border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex items-center justify-between px-8 shrink-0">
+<div class="flex items-center gap-4">
+<h2 class="text-xl font-bold">Fleet Health &amp; Fuel Tracking</h2>
+<div class="relative w-64">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">search</span>
+<input class="w-full pl-10 pr-4 py-1.5 bg-slate-100 dark:bg-slate-800 border-none rounded-lg text-sm focus:ring-primary" placeholder="Search vehicles..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-slate-500 hover:bg-slate-100 rounded-full">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-slate-500 hover:bg-slate-100 rounded-full">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="h-8 w-8 rounded-full bg-primary/20 border border-primary/30 flex items-center justify-center overflow-hidden">
+<img alt="User Profile" class="h-full w-full object-cover" data-alt="User avatar placeholder with abstract patterns" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBuj7iBVlt_Xd1Xd3tYoh9rHUkUrqMxLq2O02iTrq5EDTFdDTrvC3a8cf1-WB7uhYUqHHjUkj7bWfnFKX4B1rBi_kdJSTjxZFLxLDOJjyrynKbgfUWI2ZvlLw1RmdqHSWjuSSr89nT2V9to73lrdOaLSUWRzNmvS2V_wosBdabydj9qu9Bp_Sw-hnNK2YPCYXhohNH4_5Cpkwy967gSEYwTySRQzkW8IdSC8qc-ZwvaHClVccMCzBgc1AinSlcdkEH1Z2WObN2TpLc"/>
+</div>
+</div>
+</header>
+<div class="flex-1 flex overflow-hidden">
+<!-- Dashboard Content -->
+<div class="flex-1 overflow-y-auto p-8 space-y-8">
+<!-- KPI Row -->
+<div class="grid grid-cols-4 gap-6">
+<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+<p class="text-slate-500 text-sm font-medium">Total Fleet Health</p>
+<div class="flex items-end justify-between mt-2">
+<h3 class="text-3xl font-bold text-slate-900 dark:text-white">92%</h3>
+<span class="text-emerald-500 text-sm font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">trending_up</span>+2.1%
+                                </span>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+<p class="text-slate-500 text-sm font-medium">Avg. Fuel Efficiency</p>
+<div class="flex items-end justify-between mt-2">
+<h3 class="text-3xl font-bold text-slate-900 dark:text-white">8.2 <span class="text-lg font-normal text-slate-400">km/L</span></h3>
+<span class="text-emerald-500 text-sm font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">trending_up</span>+0.5%
+                                </span>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+<p class="text-slate-500 text-sm font-medium">Trucks in Maintenance</p>
+<div class="flex items-end justify-between mt-2">
+<h3 class="text-3xl font-bold text-slate-900 dark:text-white">1 <span class="text-lg font-normal text-slate-400">(TRK-07)</span></h3>
+<span class="text-rose-500 text-sm font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">warning</span>Active
+                                </span>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+<p class="text-slate-500 text-sm font-medium">Next Scheduled Service</p>
+<div class="flex items-end justify-between mt-2">
+<h3 class="text-3xl font-bold text-slate-900 dark:text-white">3 <span class="text-lg font-normal text-slate-400">Days</span></h3>
+<span class="text-primary text-sm font-bold">TRK-02</span>
+</div>
+</div>
+</div>
+<!-- Fleet Table -->
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+<div class="px-6 py-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+<h3 class="font-bold text-lg">Fleet Status &amp; Health</h3>
+<button class="text-primary text-sm font-semibold hover:underline">Export CSV</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-slate-50 dark:bg-slate-800/50 text-slate-500 text-xs uppercase tracking-wider font-semibold">
+<tr>
+<th class="px-6 py-4">Truck ID</th>
+<th class="px-6 py-4">Vehicle Model</th>
+<th class="px-6 py-4">License Plate</th>
+<th class="px-6 py-4">Mileage (KM)</th>
+<th class="px-6 py-4">Fuel Consumption</th>
+<th class="px-6 py-4">Status</th>
+<th class="px-6 py-4">Next Service</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors cursor-pointer bg-primary/5">
+<td class="px-6 py-4 font-bold text-primary">TRK-01</td>
+<td class="px-6 py-4 text-sm">Isuzu ELF</td>
+<td class="px-6 py-4 text-sm">B 1234 ABC</td>
+<td class="px-6 py-4 text-sm">45,200</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-24 h-1.5 bg-slate-200 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[12%]"></div>
+</div>
+<span class="text-xs font-medium">12.0</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 text-[10px] font-bold uppercase rounded-full tracking-wide">Available</span>
+</td>
+<td class="px-6 py-4 text-sm text-slate-500">15 Oct 2023</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors cursor-pointer">
+<td class="px-6 py-4 font-bold">TRK-02</td>
+<td class="px-6 py-4 text-sm">Hino Dutro</td>
+<td class="px-6 py-4 text-sm">B 5678 DEF</td>
+<td class="px-6 py-4 text-sm">89,100</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-24 h-1.5 bg-slate-200 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[15%]"></div>
+</div>
+<span class="text-xs font-medium">14.5</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-[10px] font-bold uppercase rounded-full tracking-wide">In Route</span>
+</td>
+<td class="px-6 py-4 text-sm text-slate-500">03 Oct 2023</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors cursor-pointer">
+<td class="px-6 py-4 font-bold">TRK-03</td>
+<td class="px-6 py-4 text-sm">Isuzu ELF</td>
+<td class="px-6 py-4 text-sm">B 9012 GHI</td>
+<td class="px-6 py-4 text-sm">12,300</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-24 h-1.5 bg-slate-200 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[11%]"></div>
+</div>
+<span class="text-xs font-medium">11.2</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 text-[10px] font-bold uppercase rounded-full tracking-wide">Available</span>
+</td>
+<td class="px-6 py-4 text-sm text-slate-500">22 Nov 2023</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors cursor-pointer">
+<td class="px-6 py-4 font-bold">TRK-04</td>
+<td class="px-6 py-4 text-sm">Mitsubishi Fuso</td>
+<td class="px-6 py-4 text-sm">B 3456 JKL</td>
+<td class="px-6 py-4 text-sm">156,000</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-24 h-1.5 bg-slate-200 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[20%]"></div>
+</div>
+<span class="text-xs font-medium">18.4</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-[10px] font-bold uppercase rounded-full tracking-wide">In Route</span>
+</td>
+<td class="px-6 py-4 text-sm text-slate-500">10 Oct 2023</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors cursor-pointer">
+<td class="px-6 py-4 font-bold">TRK-05</td>
+<td class="px-6 py-4 text-sm">Hino Dutro</td>
+<td class="px-6 py-4 text-sm">B 7890 MNO</td>
+<td class="px-6 py-4 text-sm">34,500</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-24 h-1.5 bg-slate-200 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[14%]"></div>
+</div>
+<span class="text-xs font-medium">13.8</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 text-[10px] font-bold uppercase rounded-full tracking-wide">Available</span>
+</td>
+<td class="px-6 py-4 text-sm text-slate-500">05 Dec 2023</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors cursor-pointer">
+<td class="px-6 py-4 font-bold">TRK-06</td>
+<td class="px-6 py-4 text-sm">Isuzu ELF</td>
+<td class="px-6 py-4 text-sm">B 1122 PQR</td>
+<td class="px-6 py-4 text-sm">67,800</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-24 h-1.5 bg-slate-200 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[13%]"></div>
+</div>
+<span class="text-xs font-medium">12.5</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-[10px] font-bold uppercase rounded-full tracking-wide">In Route</span>
+</td>
+<td class="px-6 py-4 text-sm text-slate-500">18 Oct 2023</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors cursor-pointer">
+<td class="px-6 py-4 font-bold">TRK-07</td>
+<td class="px-6 py-4 text-sm">Hino Dutro</td>
+<td class="px-6 py-4 text-sm">B 3344 STU</td>
+<td class="px-6 py-4 text-sm">102,000</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-24 h-1.5 bg-slate-200 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[17%]"></div>
+</div>
+<span class="text-xs font-medium">15.2</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-rose-100 dark:bg-rose-900/30 text-rose-600 dark:text-rose-400 text-[10px] font-bold uppercase rounded-full tracking-wide">Maintenance</span>
+</td>
+<td class="px-6 py-4 text-sm text-slate-500">01 Oct 2023</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- Selected Truck Detail Panel -->
+<aside class="w-80 bg-white dark:bg-slate-900 border-l border-slate-200 dark:border-slate-800 p-6 overflow-y-auto shrink-0 space-y-8">
+<div class="flex items-center justify-between">
+<div>
+<h4 class="text-2xl font-bold">TRK-01</h4>
+<p class="text-slate-500 text-sm">Isuzu ELF • Available</p>
+</div>
+<button class="p-2 bg-slate-100 dark:bg-slate-800 rounded-lg hover:text-primary">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+<!-- Health Radar Simulation -->
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<h5 class="text-sm font-bold uppercase text-slate-400 tracking-wider">Health Status</h5>
+<span class="text-emerald-500 text-xs font-bold px-2 py-0.5 bg-emerald-50 dark:bg-emerald-900/20 rounded">Excellent</span>
+</div>
+<div class="relative h-48 w-full flex items-center justify-center">
+<!-- Abstract Health Radar Representation -->
+<div class="absolute inset-0 border border-slate-200 dark:border-slate-800 rounded-full flex items-center justify-center">
+<div class="w-[75%] h-[75%] border border-slate-200 dark:border-slate-800 rounded-full"></div>
+<div class="w-[50%] h-[50%] border border-slate-200 dark:border-slate-800 rounded-full"></div>
+<div class="w-[25%] h-[25%] border border-slate-200 dark:border-slate-800 rounded-full"></div>
+<!-- Radar Shape -->
+<svg class="absolute w-full h-full -rotate-90">
+<polygon class="origin-center scale-90 translate-x-4 translate-y-4" fill="rgba(255, 123, 0, 0.4)" points="120,40 180,90 160,160 80,160 60,90" stroke="#ff7b00" stroke-width="2"></polygon>
+</svg>
+</div>
+<span class="absolute top-0 text-[10px] font-bold text-slate-500">ENGINE</span>
+<span class="absolute right-0 text-[10px] font-bold text-slate-500">TIRES</span>
+<span class="absolute bottom-0 text-[10px] font-bold text-slate-500">OIL</span>
+<span class="absolute left-0 text-[10px] font-bold text-slate-500">BATTERY</span>
+<span class="absolute top-1/4 right-0 text-[10px] font-bold text-slate-500">BRAKES</span>
+</div>
+</div>
+<!-- Recent Fuel Logs -->
+<div class="space-y-4">
+<h5 class="text-sm font-bold uppercase text-slate-400 tracking-wider">Recent Fuel Logs</h5>
+<div class="space-y-3">
+<div class="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+<div>
+<p class="text-sm font-bold">24 Sep 2023</p>
+<p class="text-[10px] text-slate-500">45 Liters • Shell Station</p>
+</div>
+<p class="text-sm font-bold text-slate-900 dark:text-white">$72.50</p>
+</div>
+<div class="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+<div>
+<p class="text-sm font-bold">18 Sep 2023</p>
+<p class="text-[10px] text-slate-500">42 Liters • Pertamina</p>
+</div>
+<p class="text-sm font-bold text-slate-900 dark:text-white">$68.20</p>
+</div>
+<div class="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+<div>
+<p class="text-sm font-bold">12 Sep 2023</p>
+<p class="text-[10px] text-slate-500">50 Liters • Total Energies</p>
+</div>
+<p class="text-sm font-bold text-slate-900 dark:text-white">$81.00</p>
+</div>
+</div>
+</div>
+<button class="w-full py-3 border-2 border-primary text-primary font-bold rounded-lg hover:bg-primary/5 transition-colors">
+                        Schedule Service
+                    </button>
+</aside>
+</div>
+</main>
+</div>
+</body></html>

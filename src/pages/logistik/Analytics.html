@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Logistics Analytics &amp; Reports Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ff7b00",
+                        "background-light": "#f8f7f5",
+                        "background-dark": "#121212",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .chart-gradient { background: linear-gradient(180deg, rgba(255, 123, 0, 0.2) 0%, rgba(255, 123, 0, 0) 100%); }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display">
+<div class="flex h-screen overflow-hidden">
+<!-- Sidebar -->
+<aside class="w-64 flex-shrink-0 bg-background-light dark:bg-background-dark border-r border-slate-200 dark:border-slate-800 flex flex-col">
+<div class="p-6 flex items-center gap-3">
+<div class="bg-primary rounded-lg p-1.5">
+<span class="material-symbols-outlined text-background-dark text-2xl">local_shipping</span>
+</div>
+<div>
+<h1 class="text-sm font-bold leading-tight">Logistics Admin</h1>
+<p class="text-xs text-slate-500 dark:text-slate-400">SaaS Dashboard</p>
+</div>
+</div>
+<nav class="flex-1 px-4 space-y-2 mt-4">
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">directions_bus</span>
+<span class="text-sm font-medium">Fleet Management</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 bg-primary/10 text-primary rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined fill-1">analytics</span>
+<span class="text-sm font-medium">Analytics &amp; Reports</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">map</span>
+<span class="text-sm font-medium">Routes</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</a>
+</nav>
+<div class="p-4 mt-auto border-t border-slate-200 dark:border-slate-800">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden">
+<img alt="Admin Profile" data-alt="Professional portrait of a male logistics administrator" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-oWmQwnVj57FC0XJRIbMlOvSWQi0qIKTariem-sE50Qw_I5l6HxYCvA26aABZtoT8OWz4zjYcUIPkmMOab-ynwLT6IpqF7xf3ktIfs9KFv1P_Go5wzVm7uE4k-D7MT4rpHIrDBrVAKzAKqkypiEGx3RR3vrFwA3BFa-bGsDZCICTQAQODhPB0jZN0GF2Jjbd0_eY35BG7dY3LTOvb5Bl5LjJiE2wsRZWxgv0_Drs1NBGHAyU9jX_BjkhUqdozXo9Pk_46fQqKTPg"/>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-medium truncate">Alex Rivers</p>
+<p class="text-xs text-slate-500 dark:text-slate-400 truncate">System Admin</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 overflow-y-auto bg-slate-50 dark:bg-[#0a0a0a]">
+<!-- Header -->
+<header class="sticky top-0 z-10 bg-background-light dark:bg-background-dark border-b border-slate-200 dark:border-slate-800 px-8 py-4 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<h2 class="text-xl font-bold">Monthly Analytics</h2>
+<div class="flex items-center bg-slate-100 dark:bg-slate-800 rounded-lg px-3 py-1.5 gap-2 border border-slate-200 dark:border-slate-700">
+<span class="material-symbols-outlined text-sm text-slate-500">calendar_today</span>
+<span class="text-sm font-medium">October 1 - October 31, 2023</span>
+<span class="material-symbols-outlined text-sm text-slate-500">expand_more</span>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-2 bg-primary text-background-dark px-4 py-2 rounded-lg text-sm font-bold hover:bg-primary/90 transition-colors">
+<span class="material-symbols-outlined text-sm">download</span>
+                        Export PDF/Excel
+                    </button>
+<button class="p-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</div>
+</header>
+<div class="p-8 space-y-6">
+<!-- KPI Row -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<div class="bg-background-light dark:bg-background-dark p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Total Logistics Cost</p>
+<div class="flex items-end justify-between mt-2">
+<h3 class="text-2xl font-bold">$12,400</h3>
+<span class="text-emerald-500 text-sm font-medium flex items-center">
+<span class="material-symbols-outlined text-sm">arrow_downward</span>
+                                5%
+                            </span>
+</div>
+</div>
+<div class="bg-background-light dark:bg-background-dark p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Avg. Delivery Time</p>
+<div class="flex items-end justify-between mt-2">
+<h3 class="text-2xl font-bold">4.2 hrs</h3>
+<span class="text-slate-400 text-sm font-medium">vs 4.5 last mo.</span>
+</div>
+</div>
+<div class="bg-background-light dark:bg-background-dark p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Fuel Efficiency</p>
+<div class="flex items-end justify-between mt-2">
+<h3 class="text-2xl font-bold">8.5 km/L</h3>
+<span class="text-rose-500 text-sm font-medium flex items-center">
+<span class="material-symbols-outlined text-sm">arrow_downward</span>
+                                1%
+                            </span>
+</div>
+</div>
+<div class="bg-background-light dark:bg-background-dark p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Successful Deliveries</p>
+<div class="flex items-end justify-between mt-2">
+<h3 class="text-2xl font-bold">99.2%</h3>
+<span class="text-emerald-500 text-sm font-medium flex items-center">
+<span class="material-symbols-outlined text-sm">arrow_upward</span>
+                                0.5%
+                            </span>
+</div>
+</div>
+</div>
+<!-- Middle Section: Charts -->
+<div class="grid grid-cols-1 lg:grid-cols-10 gap-6">
+<!-- Line Chart Area -->
+<div class="lg:col-span-6 bg-background-light dark:bg-background-dark p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="flex items-center justify-between mb-6">
+<h4 class="font-bold">Cost vs. Distance Trends</h4>
+<div class="flex gap-4">
+<div class="flex items-center gap-2">
+<div class="size-2 rounded-full bg-primary"></div>
+<span class="text-xs text-slate-500">Cost ($)</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="size-2 rounded-full bg-slate-400"></div>
+<span class="text-xs text-slate-500">Distance (km)</span>
+</div>
+</div>
+</div>
+<div class="h-64 relative flex items-end gap-1">
+<!-- Visual placeholder for chart -->
+<svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 100 100">
+<path d="M0 80 Q 10 70, 20 75 T 40 50 T 60 60 T 80 30 T 100 40" fill="none" stroke="#ff7b00" stroke-width="2" vector-effect="non-scaling-stroke"></path>
+<path d="M0 80 Q 10 70, 20 75 T 40 50 T 60 60 T 80 30 T 100 40 V 100 H 0 Z" fill="url(#line-grad)" opacity="0.1"></path>
+<path d="M0 90 Q 15 85, 30 88 T 50 70 T 70 80 T 100 60" fill="none" stroke="#94a3b8" stroke-dasharray="4" stroke-width="2" vector-effect="non-scaling-stroke"></path>
+<defs>
+<lineargradient id="line-grad" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#ff7b00"></stop>
+<stop offset="100%" stop-color="#ff7b00" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+</svg>
+<div class="absolute bottom-0 left-0 right-0 flex justify-between px-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+<span class="text-[10px] text-slate-400 uppercase font-bold">Week 1</span>
+<span class="text-[10px] text-slate-400 uppercase font-bold">Week 2</span>
+<span class="text-[10px] text-slate-400 uppercase font-bold">Week 3</span>
+<span class="text-[10px] text-slate-400 uppercase font-bold">Week 4</span>
+</div>
+</div>
+</div>
+<!-- Donut Chart Area -->
+<div class="lg:col-span-4 bg-background-light dark:bg-background-dark p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col">
+<h4 class="font-bold mb-6">Delivery Status Distribution</h4>
+<div class="flex-1 flex flex-col items-center justify-center relative">
+<!-- Simple SVG Donut -->
+<svg class="size-48" viewbox="0 0 36 36">
+<circle class="stroke-slate-100 dark:stroke-slate-800" cx="18" cy="18" fill="none" r="16" stroke-width="3"></circle>
+<circle class="stroke-primary" cx="18" cy="18" fill="none" r="16" stroke-dasharray="80 100" stroke-linecap="round" stroke-width="3" transform="rotate(-90 18 18)"></circle>
+<circle class="stroke-amber-400" cx="18" cy="18" fill="none" r="16" stroke-dasharray="15 100" stroke-dashoffset="-80" stroke-linecap="round" stroke-width="3" transform="rotate(-90 18 18)"></circle>
+<circle class="stroke-rose-500" cx="18" cy="18" fill="none" r="16" stroke-dasharray="5 100" stroke-dashoffset="-95" stroke-linecap="round" stroke-width="3" transform="rotate(-90 18 18)"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="text-2xl font-bold">99.2%</span>
+<span class="text-[10px] text-slate-400 uppercase font-bold">Success Rate</span>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-2 mt-6">
+<div class="text-center">
+<p class="text-[10px] text-slate-400 uppercase font-bold">Success</p>
+<p class="text-sm font-bold text-primary">80%</p>
+</div>
+<div class="text-center">
+<p class="text-[10px] text-slate-400 uppercase font-bold">Delayed</p>
+<p class="text-sm font-bold text-amber-400">15%</p>
+</div>
+<div class="text-center">
+<p class="text-[10px] text-slate-400 uppercase font-bold">Failed</p>
+<p class="text-sm font-bold text-rose-500">5%</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Section: Table -->
+<div class="bg-background-light dark:bg-background-dark rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+<div class="px-6 py-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+<h4 class="font-bold">Top Performing Drivers</h4>
+<button class="text-sm text-primary font-medium hover:underline">View All Drivers</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-slate-50 dark:bg-slate-900/50">
+<th class="px-6 py-3 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Driver Name</th>
+<th class="px-6 py-3 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Total Trips</th>
+<th class="px-6 py-3 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">On-time Rate (%)</th>
+<th class="px-6 py-3 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider text-right">Fuel Rating</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center font-bold text-xs">JS</div>
+<span class="text-sm font-medium">James Sterling</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm">142</td>
+<td class="px-6 py-4 text-sm">
+<div class="flex items-center gap-2">
+<div class="flex-1 h-1.5 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden w-24">
+<div class="bg-emerald-500 h-full w-[98%]"></div>
+</div>
+<span class="font-bold">98%</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-right font-bold text-primary">A+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center font-bold text-xs">MC</div>
+<span class="text-sm font-medium">Maria Chen</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm">128</td>
+<td class="px-6 py-4 text-sm">
+<div class="flex items-center gap-2">
+<div class="flex-1 h-1.5 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden w-24">
+<div class="bg-emerald-500 h-full w-[96%]"></div>
+</div>
+<span class="font-bold">96%</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-right font-bold text-primary">A</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center font-bold text-xs">RO</div>
+<span class="text-sm font-medium">Robert O'Neil</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm">115</td>
+<td class="px-6 py-4 text-sm">
+<div class="flex items-center gap-2">
+<div class="flex-1 h-1.5 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden w-24">
+<div class="bg-amber-500 h-full w-[92%]"></div>
+</div>
+<span class="font-bold">92%</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-right font-bold text-primary">A-</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center font-bold text-xs">LK</div>
+<span class="text-sm font-medium">Linda Knight</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm">109</td>
+<td class="px-6 py-4 text-sm">
+<div class="flex items-center gap-2">
+<div class="flex-1 h-1.5 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden w-24">
+<div class="bg-emerald-500 h-full w-[95%]"></div>
+</div>
+<span class="font-bold">95%</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-right font-bold text-primary">A</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Driver Dashboard Home</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#d64b00",
+                        "background-light": "#f8f6f5",
+                        "background-dark": "#23160f",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="relative flex min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<div class="px-4 sm:px-40 flex flex-1 justify-center py-5">
+<div class="layout-content-container flex flex-col w-full max-w-[960px] flex-1 relative pb-24">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-primary/20 px-4 sm:px-10 py-3 mb-4">
+<div class="flex items-center gap-4 text-slate-900 dark:text-slate-100">
+<div class="size-6 text-primary">
+<span class="material-symbols-outlined text-2xl">local_shipping</span>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">JAPFA Logix Driver</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="Driver Profile Picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAaj785_jtKFkswiIBeDqq2UShhAFaxZl-CZnALXlYYUBpCzMQg56pCHRq3l2K4xDMBz-RJPqUX-rvSVIIUtMtop5M7Q00cWFe5W6jNXxjUvyV2lERbDswtQF8yL9l26fRTCle1J7TpifxIEmu23-x73r5Su79IFD4KLgtq-kWgnGZ11oItMbVpIdYHhRHZopbNe0TReHbi7SklAMueXKbC099LHYS6Jh-ShjjEOgCC1DhEMXTwJyUtfW2wEyLgDUemqZy9aGaMmSI");'></div>
+</div>
+</header>
+<div class="p-4">
+<div class="flex flex-col sm:flex-row items-stretch justify-between gap-4 rounded-lg bg-white dark:bg-slate-800 p-4 shadow-sm border border-primary/10">
+<div class="flex flex-col gap-1 flex-[2_2_0px]">
+<p class="text-2xl font-bold leading-tight text-primary">Truk B 9044 JXS</p>
+<p class="text-sm font-medium leading-normal opacity-70">Rabu, 24 Mei 2023</p>
+</div>
+<div class="w-full sm:w-1/3 bg-center bg-no-repeat aspect-video bg-cover rounded-lg" data-alt="Truck Image" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCon5r9dDzk7H8RLSeaUjSwcIdytLxBml4J4Ez7dz332x3yaCQn6DQfNBRfFhcoQVfkQeicjpRtgu-KdmJbWgXrPctNSgOfqXTlsNzlyijaiJRu9CS1FgMNyyCiTmDm0noFhClRbvw7oNn7EPBgVROHhCqcgYD1EXvgB1GSBCapBmLgZNaJo99cEFfUyrddyto3tY90P0FvJDVUvaowqRIuoL_sJm-tYe21CkomTQcNca1shv0ZNmJfrFqlArF3DF80N8P3tOnJm08");'></div>
+</div>
+</div>
+<div class="flex flex-col gap-3 p-4 bg-white dark:bg-slate-800 rounded-lg mx-4 mt-2 shadow-sm border border-primary/10">
+<div class="flex gap-6 justify-between items-end">
+<p class="text-lg font-bold leading-normal">0 dari 15 Kunjungan Selesai</p>
+<p class="text-xl font-bold leading-normal text-primary">0%</p>
+</div>
+<div class="rounded-full bg-primary/20 h-4 w-full overflow-hidden">
+<div class="h-full rounded-full bg-primary transition-all duration-300" style="width: 0%;"></div>
+</div>
+</div>
+<h2 class="text-xl font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-8">Today's Stops</h2>
+<div class="flex flex-col gap-2 px-4">
+<!-- Stop 1 -->
+<div class="flex items-center gap-4 bg-white dark:bg-slate-800 rounded-lg p-4 shadow-sm border border-primary/10 justify-between">
+<div class="flex items-center gap-4">
+<div class="flex items-center justify-center rounded-lg bg-primary/10 text-primary shrink-0 size-12">
+<span class="material-symbols-outlined">location_on</span>
+</div>
+<div class="flex flex-col justify-center">
+<p class="text-base font-bold leading-normal line-clamp-1">Gudang JAPFA Cikande</p>
+<p class="text-sm font-medium leading-normal opacity-70 line-clamp-2">Jl. Raya Serang Km. 68, Cikande</p>
+</div>
+</div>
+<div class="shrink-0 flex flex-col items-end">
+<p class="text-base font-bold leading-normal">08:00</p>
+<span class="px-2 py-1 bg-slate-100 dark:bg-slate-700 rounded text-xs font-medium mt-1">Pending</span>
+</div>
+</div>
+<!-- Stop 2 -->
+<div class="flex items-center gap-4 bg-white dark:bg-slate-800 rounded-lg p-4 shadow-sm border border-primary/10 justify-between">
+<div class="flex items-center gap-4">
+<div class="flex items-center justify-center rounded-lg bg-primary/10 text-primary shrink-0 size-12">
+<span class="material-symbols-outlined">location_on</span>
+</div>
+<div class="flex flex-col justify-center">
+<p class="text-base font-bold leading-normal line-clamp-1">Toko Makmur Jaya</p>
+<p class="text-sm font-medium leading-normal opacity-70 line-clamp-2">Pasar Induk Rau, Serang</p>
+</div>
+</div>
+<div class="shrink-0 flex flex-col items-end">
+<p class="text-base font-bold leading-normal">09:30</p>
+<span class="px-2 py-1 bg-slate-100 dark:bg-slate-700 rounded text-xs font-medium mt-1">Pending</span>
+</div>
+</div>
+<!-- Stop 3 -->
+<div class="flex items-center gap-4 bg-white dark:bg-slate-800 rounded-lg p-4 shadow-sm border border-primary/10 justify-between">
+<div class="flex items-center gap-4">
+<div class="flex items-center justify-center rounded-lg bg-primary/10 text-primary shrink-0 size-12">
+<span class="material-symbols-outlined">location_on</span>
+</div>
+<div class="flex flex-col justify-center">
+<p class="text-base font-bold leading-normal line-clamp-1">Kios Unggas Berkah</p>
+<p class="text-sm font-medium leading-normal opacity-70 line-clamp-2">Jl. Ahmad Yani No. 45, Cilegon</p>
+</div>
+</div>
+<div class="shrink-0 flex flex-col items-end">
+<p class="text-base font-bold leading-normal">11:00</p>
+<span class="px-2 py-1 bg-slate-100 dark:bg-slate-700 rounded text-xs font-medium mt-1">Pending</span>
+</div>
+</div>
+</div>
+<!-- Fixed Bottom Button -->
+<div class="fixed bottom-0 left-0 right-0 p-4 bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm border-t border-primary/20 flex justify-center z-50">
+<button class="w-full max-w-[928px] bg-primary text-white rounded-xl py-4 px-6 text-xl font-bold tracking-wide shadow-lg hover:bg-primary/90 transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">play_arrow</span>
+                            MULAI PERJALANAN
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body></html>
