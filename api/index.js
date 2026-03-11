@@ -1,6 +1,4 @@
 const app = require('./src/app');
 
-module.exports = (req, res) => {
-    // This allows Express to handle the request in a Vercel serverless environment
-    return app(req, res);
-};
+// Vercel handles Express apps by exporting the instance directly
+module.exports = app;
