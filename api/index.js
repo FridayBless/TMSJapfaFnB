@@ -1,32 +1,18 @@
-// Vercel Serverless Function Entry Point
-// Using the correct handler pattern for Vercel + Express
-const express = require('express');
-const cors = require('cors');
-
-const app = express();
-app.use(cors());
-app.use(express.json());
-
-// All routes prefixed since Vercel routes /api/* here
-app.get('*', (req, res, next) => {
-    // handle /api/test
-    if (req.path === '/api/test' || req.path === '/test') {
-        return res.json({
-            status: 'OK',
-            message: 'API layer is working',
-            env: {
-                hasSupabaseUrl: !!process.env.SUPABASE_URL,
-                hasSupabaseKey: !!process.env.SUPABASE_ANON_KEY,
-                nodeVersion: process.version
-            }
-        });
-    }
-    next();
-});
-
-app.get('*', (req, res) => {
-    res.status(404).json({ error: 'Not found', path: req.path });
-});
-
-// Export as Vercel handler (works with both express and direct handler)
-module.exports = app;
+// Pure Node.js handler - ZERO npm dependencies
+// This tests if Vercel can even run a function without any node_modules
+module.exports = (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.statusCode = 200;
+    res.end(JSON.stringify({
+        status: 'OK',
+        message: 'API layer is working',
+        path: req.url,
+        timestamp: new Date().toISOString(),
+        env: {
+            hasSupabaseUrl: !!process.env.SUPABASE_URL,
+            hasSupabaseKey: !!process.env.SUPABASE_ANON_KEY,
+            nodeVersion: process.version
+        }
+    }));
+};
