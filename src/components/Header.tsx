@@ -14,14 +14,6 @@ export default function Header({ title }: { title: string }) {
     return (
         <header className="h-16 bg-white dark:bg-[#111] border-b border-slate-200 dark:border-slate-800 flex items-center justify-between px-4 md:px-8 shrink-0 transition-colors">
             <div className="flex items-center gap-3">
-                <div className="bg-slate-100 dark:bg-white p-1 rounded-lg w-8 h-8 flex items-center justify-center shrink-0">
-                    <img src="/japfa-logo.png" alt="Logo" className="w-full h-full object-contain" />
-                </div>
-                <span className="font-bold text-lg tracking-tight font-sans whitespace-nowrap hidden sm:block">
-                    <span className="text-slate-900 dark:text-white">TMS </span>
-                    <span className="text-[#FF7A00]">Japfa</span>
-                </span>
-                <div className="h-6 w-px bg-slate-200 dark:bg-slate-800 hidden sm:block mx-1"></div>
                 <h2 className="text-base md:text-lg font-bold text-slate-800 dark:text-white truncate">{title}</h2>
             </div>
             <div className="flex items-center gap-6">

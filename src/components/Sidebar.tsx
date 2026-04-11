@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useSidebar } from "../context/SidebarContext";
+import { useAuth } from "../context/AuthContext";
 
 export default function Sidebar() {
     const navigate = useNavigate();
+    const { role } = useAuth();
     const { isCollapsed, toggleSidebar, isMobileMenuOpen, closeMobileMenu } = useSidebar();
     const [isProfileOpen, setIsProfileOpen] = useState(false);
 
@@ -60,12 +62,14 @@ export default function Sidebar() {
 
                 <nav className="p-4 flex flex-col gap-1">
                     {[
-                        { to: "/logistik", icon: "dashboard", label: "Dashboard", end: true },
-                        { to: "/logistik/route-planning", icon: "map", label: "Route Planning" },
-                        { to: "/logistik/fleet", icon: "local_shipping", label: "Fleet Management" },
-                        { to: "/logistik/drivers", icon: "badge", label: "Driver List" },
-                        { to: "/logistik/analytics", icon: "analytics", label: "Analytics" },
-                    ].map((item) => (
+                        { to: "/logistik", icon: "dashboard", label: "Dashboard", end: true, roles: ['logistik'] },
+                        { to: "/manager", icon: "monitoring", label: "Manager Logistik", roles: ['manager'] },
+                        { to: "/logistik/route-planning", icon: "map", label: "Route Planning", roles: ['logistik'] },
+                        { to: "/logistik/fleet", icon: "local_shipping", label: "Fleet Management", roles: ['logistik'] },
+                        { to: "/logistik/drivers", icon: "badge", label: "Driver List", roles: ['logistik'] },
+                        { to: "/logistik/customers", icon: "groups", label: "Customer Data", roles: ['logistik'] },
+                        { to: "/logistik/analytics", icon: "analytics", label: "Analytics", roles: ['logistik'] },
+                    ].filter(item => !item.roles || item.roles.includes(role || '')).map((item) => (
                         <NavLink
                             key={item.to}
                             to={item.to}
@@ -78,14 +82,16 @@ export default function Sidebar() {
                         </NavLink>
                     ))}
                     <div className="my-2 border-t border-slate-200 dark:border-white/5"></div>
-                    <NavLink
-                        to="/logistik/settings"
-                        onClick={closeMobileMenu}
-                        className={({ isActive }) => `flex items-center ${isCollapsed ? 'justify-center' : 'gap-3'} px-4 py-3 rounded-lg transition-all ${isActive ? 'active-nav shadow-lg shadow-primary/20' : 'hover:bg-slate-100 hover:text-slate-900 dark:hover:text-white dark:hover:bg-white/5'}`}
-                    >
-                        <span className="material-symbols-outlined">settings</span>
-                        {!isCollapsed && <span className="text-sm font-medium">Settings</span>}
-                    </NavLink>
+                    {role === 'logistik' && (
+                        <NavLink
+                            to="/logistik/settings"
+                            onClick={closeMobileMenu}
+                            className={({ isActive }) => `flex items-center ${isCollapsed ? 'justify-center' : 'gap-3'} px-4 py-3 rounded-lg transition-all ${isActive ? 'active-nav shadow-lg shadow-primary/20' : 'hover:bg-slate-100 hover:text-slate-900 dark:hover:text-white dark:hover:bg-white/5'}`}
+                        >
+                            <span className="material-symbols-outlined">settings</span>
+                            {!isCollapsed && <span className="text-sm font-medium">Settings</span>}
+                        </NavLink>
+                    )}
                 </nav>
             </div>
 
@@ -115,14 +121,15 @@ export default function Sidebar() {
                                     <span className="material-symbols-outlined text-xl">check_circle</span>
                                 </button>
                                 <button
-                                    onClick={() => navigate('/sales')}
+                                    onClick={() => navigate('/manager')}
                                     className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-white/5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-all"
                                 >
                                     <div className="flex items-center gap-3">
-                                        <span className="material-symbols-outlined text-xl">point_of_sale</span>
-                                        <span className="text-sm font-medium">Admin Sales</span>
+                                        <span className="material-symbols-outlined text-xl">monitoring</span>
+                                        <span className="text-sm font-medium">Manager Logistik</span>
                                     </div>
                                 </button>
+
                                 <button
                                     onClick={() => navigate('/pod')}
                                     className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-white/5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-all"

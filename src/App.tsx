@@ -13,6 +13,10 @@ import LogisticsDriverPerformance from './pages/logistik/DriverPerformance';
 import LogisticsFleetManagement from './pages/logistik/FleetManagement';
 import LogisticsAnalytics from './pages/logistik/Analytics';
 import LogisticsSettings from './pages/logistik/Settings';
+import CustomerData from './pages/logistik/CustomerData';
+import AddCustomer from './pages/logistik/AddCustomer';
+import EditCustomer from './pages/logistik/EditCustomer';
+import ManagerLogistik from './pages/manager logistik/ManagerLogistik';
 
 // Admin POD Pages
 import PodDashboard from './pages/pod/Dashboard';
@@ -21,11 +25,7 @@ import PodMonitoring from './pages/pod/Monitoring';
 import PodHistory from './pages/pod/History';
 import PodSettings from './pages/pod/Settings';
 
-// Admin Sales Pages
-import SalesDashboardLayout, { SalesHome } from './pages/sales/Dashboard';
-import SalesOrderEntry from './pages/sales/OrderEntry';
-import SalesVisibility from './pages/sales/Visibility';
-import SalesBilling from './pages/sales/Billing';
+
 
 // Driver Pages
 import DriverDashboard from './pages/driver/Dashboard';
@@ -56,8 +56,18 @@ function App() {
                 <Route path="/logistik/route-planning" element={<LogisticsRoutePlanning />} />
                 <Route path="/logistik/fleet" element={<LogisticsFleetManagement />} />
                 <Route path="/logistik/drivers" element={<LogisticsDriverPerformance />} />
+                <Route path="/logistik/customers" element={<CustomerData />} />
+                <Route path="/logistik/customers/add" element={<AddCustomer />} />
+                <Route path="/logistik/customers/edit" element={<EditCustomer />} />
                 <Route path="/logistik/analytics" element={<LogisticsAnalytics />} />
                 <Route path="/logistik/settings" element={<LogisticsSettings />} />
+              </Route>
+            </Route>
+
+            {/* Manager Logistik Routes */}
+            <Route element={<RoleGuard allowedRoles={['manager']} />}>
+              <Route element={<LogisticsLayout />}>
+                <Route path="/manager" element={<ManagerLogistik />} />
               </Route>
             </Route>
 
@@ -70,17 +80,6 @@ function App() {
               <Route path="/pod/settings" element={<PodSettings />} />
               {/* Catch-all for pod routes */}
               <Route path="/pod/*" element={<Navigate to="/pod" replace />} />
-            </Route>
-
-            {/* Admin Sales Routes */}
-            <Route element={<RoleGuard allowedRoles={['sales']} />}>
-              <Route element={<SalesDashboardLayout />}>
-                <Route path="/sales" element={<SalesHome />} />
-                <Route path="/sales/order-entry" element={<SalesOrderEntry />} />
-                <Route path="/sales/visibility" element={<SalesVisibility />} />
-                <Route path="/sales/billing" element={<SalesBilling />} />
-                <Route path="/sales/*" element={<Navigate to="/sales" replace />} />
-              </Route>
             </Route>
 
             {/* Driver Routes (Mobile First) */}

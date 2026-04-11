@@ -10,7 +10,7 @@ export default function Login() {
 
     const handleSignIn = (e: React.FormEvent) => {
         e.preventDefault();
-        
+
         let targetRole: Role = 'logistik';
         if (email.toLowerCase().includes('pod')) {
             targetRole = 'pod';
@@ -18,16 +18,20 @@ export default function Login() {
             targetRole = 'sales';
         } else if (email.toLowerCase().includes('driver')) {
             targetRole = 'driver';
+        } else if (email.toLowerCase().includes('manager')) {
+            targetRole = 'manager';
         }
-        
+
         login(targetRole);
-        
+
         if (targetRole === 'pod') {
             navigate('/pod');
         } else if (targetRole === 'sales') {
             navigate('/sales');
         } else if (targetRole === 'driver') {
             navigate('/driver');
+        } else if (targetRole === 'manager') {
+            navigate('/manager');
         } else {
             navigate('/logistik');
         }
@@ -71,7 +75,7 @@ export default function Login() {
                     {/* Header */}
                     <div className="mb-10">
                         <h2 className="text-3xl font-bold text-slate-900 dark:text-slate-100 mb-2">Welcome Back</h2>
-                        <p className="text-slate-500 dark:text-slate-400">Please enter your credentials to access the dashboard. (Try typing 'pod' or 'sales' in the email)</p>
+                        <p className="text-slate-500 dark:text-slate-400">Please enter your credentials to access the dashboard. (Try typing 'pod' or 'driver' in the email)</p>
                     </div>
 
                     {/* Form */}

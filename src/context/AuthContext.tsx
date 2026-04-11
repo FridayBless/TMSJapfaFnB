@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, type ReactNode } from 'react';
 
-export type Role = 'logistik' | 'pod' | 'sales' | 'driver' | null;
+export type Role = 'logistik' | 'manager' | 'pod' | 'sales' | 'driver' | null;
 
 interface AuthContextType {
   role: Role;

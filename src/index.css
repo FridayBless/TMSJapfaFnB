@@ -7,6 +7,14 @@
   --color-sidebar: #121212;
   --color-popover: #1F1F1F;
   --color-main-bg: #F9FAFB;
+
+  --color-japfa-orange: #F28C38;
+  --color-japfa-dark: #1e293b;
+  --color-japfa-navy: #0F172A;
+  --color-japfa-slate: #2D3748;
+  --color-japfa-red: #E53E3E;
+  --color-japfa-gray: #64748b;
+  --color-japfa-light: #f8fafc;
 }
 
 @layer base {
@@ -40,4 +48,20 @@
 
 .profile-popover {
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.4s ease-out forwards;
 }

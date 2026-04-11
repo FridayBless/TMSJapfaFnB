@@ -64,7 +64,7 @@ export default function PodSidebar() {
                         <div className="p-4">
                             <p className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest px-2 mb-3">Switch Role</p>
                             <div className="space-y-1">
-                                <button 
+                                <button
                                     onClick={() => navigate('/logistik')}
                                     className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-white/5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-all"
                                 >
@@ -73,7 +73,16 @@ export default function PodSidebar() {
                                         <span className="text-sm font-medium">Admin Logistik</span>
                                     </div>
                                 </button>
-                                <button 
+                                <button
+                                    onClick={() => navigate('/manager')}
+                                    className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-white/5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-all"
+                                >
+                                    <div className="flex items-center gap-3">
+                                        <span className="material-symbols-outlined text-xl">monitoring</span>
+                                        <span className="text-sm font-medium">Manager Logistik</span>
+                                    </div>
+                                </button>
+                                <button
                                     onClick={() => navigate('/sales')}
                                     className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-white/5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-all"
                                 >
@@ -82,7 +91,7 @@ export default function PodSidebar() {
                                         <span className="text-sm font-medium">Admin Sales</span>
                                     </div>
                                 </button>
-                                <button 
+                                <button
                                     onClick={() => navigate('/pod')}
                                     className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl bg-primary/10 text-primary group transition-all"
                                 >
@@ -92,7 +101,7 @@ export default function PodSidebar() {
                                     </div>
                                     <span className="material-symbols-outlined text-xl">check_circle</span>
                                 </button>
-                                <button 
+                                <button
                                     onClick={() => navigate('/driver')}
                                     className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-white/5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-all"
                                 >
