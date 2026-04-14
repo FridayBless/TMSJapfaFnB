@@ -20,14 +20,13 @@ export default function Sidebar() {
         `}>
             <div className="flex flex-col overflow-hidden">
                 <div className={`p-6 flex items-center ${isCollapsed ? 'justify-center' : 'justify-between'} border-b border-slate-200 dark:border-white/5 h-20`}>
-                    <div className="flex items-center gap-3">
-                        <div className="bg-slate-100 dark:bg-white p-1 rounded-lg w-10 h-10 flex items-center justify-center shrink-0">
+                    <div className="flex items-center gap-4">
+                        <div className="bg-slate-50 dark:bg-white p-1 rounded-lg w-16 h-10 flex items-center justify-center shrink-0">
                             <img src="/japfa-logo.png" alt="Logo" className="w-full h-full object-contain" />
                         </div>
                         {!isCollapsed && (
                             <span className="font-bold text-xl tracking-tight font-sans whitespace-nowrap lg:block">
-                                <span className="text-slate-900 dark:text-white">TMS </span>
-                                <span className="text-[#FF7A00]">Japfa</span>
+                                <span className="text-primary font-bold text-2xl tracking-tight font-sans whitespace-nowrap">TMS</span>
                             </span>
                         )}
                     </div>

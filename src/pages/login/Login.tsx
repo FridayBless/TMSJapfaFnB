@@ -45,7 +45,7 @@ export default function Login() {
                 <div
                     className="absolute inset-0 bg-cover bg-[80%_center]"
                     title="Japfa Operations"
-                    style={{ backgroundImage: "linear-gradient(to right, rgba(17, 17, 17, 0.8), rgba(17, 17, 17, 0.3)), url('/japfa-bg.jpg')" }}
+                    style={{ backgroundImage: "linear-gradient(to right, rgba(17, 17, 17, 0.8), rgba(17, 17, 17, 0.3)), url('/japfa-bg.png')" }}
                 ></div>
                 <div className="relative z-10 flex flex-col justify-center px-20">
                     <h1 className="text-5xl font-black text-white leading-tight max-w-xl">
@@ -63,12 +63,11 @@ export default function Login() {
                 <div className="flex flex-col justify-center flex-1 px-8 md:px-16 lg:px-12 xl:px-20 py-12">
                     {/* Logo */}
                     <div className="flex items-center gap-3 mb-12">
-                        <div className="bg-white p-1 rounded-lg w-10 h-10 flex items-center justify-center shrink-0">
+                        <div className="bg-white p-1 rounded-lg w-30 h-30 flex items-center justify-center shrink-0">
                             <img src="/japfa-logo.png" alt="Logo" className="w-full h-full object-contain" />
                         </div>
                         <span className="font-bold text-2xl tracking-tight font-sans whitespace-nowrap">
-                            <span className="text-slate-900 dark:text-white">TMS </span>
-                            <span className="text-[#D54B00]">Japfa</span>
+                            <span className="text-primary">TMS </span>
                         </span>
                     </div>
 
