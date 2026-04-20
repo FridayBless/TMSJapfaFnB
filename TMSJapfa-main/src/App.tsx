@@ -6,6 +6,10 @@ import { RoleGuard } from './components/layouts/RoleGuard';
 // Login Page
 import Login from './pages/login/Login';
 
+// Legal Pages (co-located in Login.tsx)
+import { TermsOfService } from './pages/login/Login';
+import { PrivacyPolicy } from './pages/login/Login';
+
 // Admin Logistik Pages
 import LogisticsDashboard from './pages/logistik/Dashboard';
 import LogisticsRoutePlanning from './pages/logistik/RoutePlanning';
@@ -13,6 +17,7 @@ import LogisticsDriverPerformance from './pages/logistik/DriverPerformance';
 import LogisticsFleetManagement from './pages/logistik/FleetManagement';
 import LogisticsAnalytics from './pages/logistik/Analytics';
 import LogisticsSettings from './pages/logistik/Settings';
+import LoadPlanner from './pages/logistik/LoadPlanner';
 import CustomerData from './pages/logistik/CustomerData';
 import AddCustomer from './pages/logistik/AddCustomer';
 import EditCustomer from './pages/logistik/EditCustomer';
@@ -43,8 +48,10 @@ function App() {
       <AuthProvider>
         <SidebarProvider>
           <Routes>
-            {/* Public Route */}
+            {/* Public Routes */}
             <Route path="/login" element={<Login />} />
+            <Route path="/terms-of-service" element={<TermsOfService />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
 
             {/* Root Redirect */}
             <Route path="/" element={<Navigate to="/login" replace />} />
@@ -61,6 +68,7 @@ function App() {
                 <Route path="/logistik/customers/edit" element={<EditCustomer />} />
                 <Route path="/logistik/analytics" element={<LogisticsAnalytics />} />
                 <Route path="/logistik/settings" element={<LogisticsSettings />} />
+                <Route path="/logistik/load-planner" element={<LoadPlanner />} />
               </Route>
             </Route>
 

@@ -1,11 +1,14 @@
+import { useState } from "react";
 import PodSidebar from "./Sidebar";
 import Header from "../../components/Header";
 
 export default function Monitoring() {
+    const [isFilterOpen, setIsFilterOpen] = useState(false);
+    const [openActionId, setOpenActionId] = useState<number | null>(null);
     return (
         <div className="flex h-screen overflow-hidden relative bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased font-display transition-colors">
             <PodSidebar />
-            
+
             {/* Main Content */}
             <main className="flex-1 flex flex-col min-w-0 overflow-y-auto bg-slate-50 dark:bg-[#111111]">
                 <Header title="Monitoring Harian" />
@@ -73,12 +76,33 @@ export default function Monitoring() {
                         <div className="p-6 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between bg-white dark:bg-[#1a1a1a]">
                             <h3 className="font-bold text-lg dark:text-white">Tabel Pemantauan Truk</h3>
                             <div className="flex items-center gap-2">
-                                <button className="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-slate-600 dark:text-slate-300 bg-slate-50 dark:bg-[#222] border border-slate-200 dark:border-slate-700 rounded-lg transition-colors">
-                                    <span className="material-symbols-outlined text-base">filter_list</span> Filter
-                                </button>
-                                <button className="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-primary bg-primary/10 rounded-lg hover:bg-primary/20 transition-colors">
-                                    <span className="material-symbols-outlined text-base">download</span> Export
-                                </button>
+                                <div className="flex items-center gap-2">
+                                    <div className="relative">
+                                        <button onClick={() => setIsFilterOpen(!isFilterOpen)} className="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-slate-600 dark:text-slate-300 bg-slate-50 dark:bg-[#222] border border-slate-200 dark:border-slate-700 rounded-lg transition-colors active:scale-95">
+                                            <span className="material-symbols-outlined text-base">filter_list</span> Filter
+                                        </button>
+                                        {isFilterOpen && (
+                                            <div className="absolute right-0 bottom-full mb-2 w-48 bg-white dark:bg-[#1A1A1A] border border-slate-200 dark:border-[#333] rounded-xl shadow-lg z-20 overflow-hidden text-left">
+                                                <div className="p-3 border-b border-slate-100 dark:border-[#333]">
+                                                    <p className="text-xs font-bold text-slate-500 uppercase tracking-wider">Filter By Route</p>
+                                                </div>
+                                                <div className="p-2 flex flex-col gap-1">
+                                                    <label className="flex items-center gap-2 p-2 hover:bg-slate-50 dark:hover:bg-[#222] rounded-lg cursor-pointer transition-colors">
+                                                        <input type="checkbox" className="rounded text-primary focus:ring-primary" />
+                                                        <span className="text-sm dark:text-slate-300">Inner City</span>
+                                                    </label>
+                                                    <label className="flex items-center gap-2 p-2 hover:bg-slate-50 dark:hover:bg-[#222] rounded-lg cursor-pointer transition-colors">
+                                                        <input type="checkbox" className="rounded text-primary focus:ring-primary" />
+                                                        <span className="text-sm dark:text-slate-300">Inter-city</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        )}
+                                    </div>
+                                    <button onClick={() => alert("Feature coming soon!")} className="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-primary bg-primary/10 rounded-lg hover:bg-primary/20 transition-colors active:scale-95">
+                                        <span className="material-symbols-outlined text-base">download</span> Export
+                                    </button>
+                                </div>
                             </div>
                         </div>
                         <div className="overflow-x-auto">
@@ -119,8 +143,25 @@ export default function Monitoring() {
                                                 Waiting Admin
                                             </span>
                                         </td>
-                                        <td className="px-6 py-4 text-right">
-                                            <button className="text-primary hover:underline text-xs font-bold">Detail Truk</button>
+                                        <td className="px-6 py-4 text-right relative">
+                                            <button
+                                                onClick={(e) => { e.stopPropagation(); setOpenActionId(openActionId === 1 ? null : 1); }}
+                                                className="text-slate-400 hover:text-primary transition-colors cursor-pointer active:scale-95 ml-auto flex items-center justify-end"
+                                            >
+                                                <span className="material-symbols-outlined">more_horiz</span>
+                                            </button>
+                                            {openActionId === 1 && (
+                                                <div className="absolute right-6 top-10 mt-1 w-48 bg-white dark:bg-[#1A1A1A] border border-slate-100 dark:border-[#333] rounded-xl shadow-lg z-20 overflow-hidden text-left">
+                                                    <div className="p-1" role="menu">
+                                                        <button onClick={(e) => { e.stopPropagation(); alert('Detail Truk'); setOpenActionId(null); }} className="w-full text-left px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-[#222] flex items-center gap-2 transition-colors">
+                                                            <span className="material-symbols-outlined text-[16px]">visibility</span> Detail Truk
+                                                        </button>
+                                                        <button onClick={(e) => { e.stopPropagation(); alert('Hubungi Driver'); setOpenActionId(null); }} className="w-full text-left px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-[#222] flex items-center gap-2 transition-colors">
+                                                            <span className="material-symbols-outlined text-[16px]">call</span> Hubungi Driver
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            )}
                                         </td>
                                     </tr>
                                     {/* Stop Details Row */}
@@ -142,7 +183,23 @@ export default function Monitoring() {
                                                         </div>
                                                         <div className="flex items-center gap-6">
                                                             <span className="px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-400">Verified</span>
-                                                            <button className="text-slate-400 hover:text-primary transition-colors"><span className="material-symbols-outlined text-lg">visibility</span></button>
+                                                            <div className="relative">
+                                                                <button
+                                                                    onClick={(e) => { e.stopPropagation(); setOpenActionId(openActionId === 101 ? null : 101); }}
+                                                                    className="text-slate-400 hover:text-primary transition-colors cursor-pointer active:scale-95"
+                                                                >
+                                                                    <span className="material-symbols-outlined text-lg">visibility</span>
+                                                                </button>
+                                                                {openActionId === 101 && (
+                                                                    <div className="absolute right-0 top-6 mt-1 w-40 bg-white dark:bg-[#1A1A1A] border border-slate-100 dark:border-[#333] rounded-xl shadow-lg z-20 overflow-hidden text-left">
+                                                                        <div className="p-1" role="menu">
+                                                                            <button onClick={(e) => { e.stopPropagation(); alert('View Document'); setOpenActionId(null); }} className="w-full text-left px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-[#222] flex items-center gap-2 transition-colors">
+                                                                                <span className="material-symbols-outlined text-[16px]">description</span> View Document
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                )}
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     {/* Stop Item 2 */}
@@ -158,7 +215,7 @@ export default function Monitoring() {
                                                         </div>
                                                         <div className="flex items-center gap-6">
                                                             <span className="px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-400">Waiting Admin</span>
-                                                            <button className="px-3 py-1 bg-primary text-white text-[10px] font-bold rounded-lg hover:bg-primary/90 transition-colors">Verify Now</button>
+                                                            <button onClick={() => alert("Feature coming soon!")} className="px-3 py-1 bg-primary text-white text-[10px] font-bold rounded-lg hover:bg-primary/90 transition-colors cursor-pointer active:scale-95">Verify Now</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -192,7 +249,7 @@ export default function Monitoring() {
                                             </span>
                                         </td>
                                         <td className="px-6 py-4 text-right">
-                                            <button className="text-primary hover:underline text-xs font-bold">Detail Truk</button>
+                                            <button onClick={() => alert("Action triggered: Detail Truk")} className="text-primary hover:underline text-xs font-bold active:scale-95 transition-all">Detail Truk</button>
                                         </td>
                                     </tr>
                                 </tbody>

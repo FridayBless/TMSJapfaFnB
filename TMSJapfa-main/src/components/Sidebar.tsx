@@ -64,6 +64,7 @@ export default function Sidebar() {
                         { to: "/logistik", icon: "dashboard", label: "Dashboard", end: true, roles: ['logistik'] },
                         { to: "/manager", icon: "monitoring", label: "Manager Logistik", roles: ['manager'] },
                         { to: "/logistik/route-planning", icon: "map", label: "Route Planning", roles: ['logistik'] },
+                        { to: "/logistik/load-planner", icon: "conveyor_belt", label: "Load Planner", roles: ['logistik'] },
                         { to: "/logistik/fleet", icon: "local_shipping", label: "Fleet Management", roles: ['logistik'] },
                         { to: "/logistik/drivers", icon: "badge", label: "Driver List", roles: ['logistik'] },
                         { to: "/logistik/customers", icon: "groups", label: "Customer Data", roles: ['logistik'] },

@@ -1,11 +1,36 @@
+import { useState } from "react";
 import PodSidebar from "./Sidebar";
 import Header from "../../components/Header";
 
+const ActionMenu = ({ id, currentOpenId, setOpenId }: { id: number, currentOpenId: number | null, setOpenId: (id: number | null) => void }) => (
+    <div className="relative">
+        <button onClick={(e) => { e.stopPropagation(); setOpenId(currentOpenId === id ? null : id); }} className="text-slate-400 hover:text-primary transition-colors cursor-pointer active:scale-95 flex items-center justify-center p-1 rounded-full"><span className="material-symbols-outlined">more_vert</span></button>
+        {currentOpenId === id && (
+            <div className="absolute right-0 top-full mt-1 w-48 bg-white dark:bg-[#1A1A1A] border border-slate-200 dark:border-[#333] rounded-xl shadow-lg z-20 overflow-hidden text-left" onClick={(e) => e.stopPropagation()}>
+                <div className="p-2 flex flex-col">
+                    <button className="flex items-center gap-3 px-3 py-2 text-sm text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-[#222] hover:text-primary dark:hover:text-primary rounded-lg transition-colors text-left group active:scale-95 font-medium">
+                        <span className="material-symbols-outlined text-[18px] group-hover:text-primary transition-colors">visibility</span> Lihat Detail
+                    </button>
+                    <button className="flex items-center gap-3 px-3 py-2 text-sm text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-[#222] hover:text-primary dark:hover:text-primary rounded-lg transition-colors text-left group active:scale-95 font-medium">
+                        <span className="material-symbols-outlined text-[18px] group-hover:text-primary transition-colors">picture_as_pdf</span> Unduh PDF
+                    </button>
+                    <button className="flex items-center gap-3 px-3 py-2 text-sm text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-[#222] hover:text-primary dark:hover:text-primary rounded-lg transition-colors text-left group active:scale-95 font-medium">
+                        <span className="material-symbols-outlined text-[18px] group-hover:text-primary transition-colors">print</span> Cetak Arsip
+                    </button>
+                </div>
+            </div>
+        )}
+    </div>
+);
+
 export default function History() {
+    const [isDownloadMenuOpen, setIsDownloadMenuOpen] = useState(false);
+    const [openActionId, setOpenActionId] = useState<number | null>(null);
+
     return (
         <div className="flex h-screen overflow-hidden relative bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased font-display transition-colors">
             <PodSidebar />
-            
+
             {/* Main Content Area */}
             <main className="flex-1 flex flex-col overflow-y-auto bg-slate-50 dark:bg-[#111111]">
                 {/* Header */}
@@ -37,11 +62,23 @@ export default function History() {
                                 <input className="w-full pl-10 pr-4 py-2 bg-background-light dark:bg-[#222] dark:text-slate-300 border-slate-200 dark:border-slate-700 rounded-lg text-sm focus:ring-primary focus:border-primary transition-colors" placeholder="Cari No. DO, Nama Toko, atau Driver..." type="text" />
                             </div>
                         </div>
-                        <div className="flex items-end self-stretch">
-                            <button className="flex items-center gap-2 border-2 border-primary text-primary px-4 py-2 rounded-lg font-bold text-sm hover:bg-primary hover:text-white transition-all h-[42px]">
+                        <div className="flex items-end self-stretch relative">
+                            <button onClick={() => setIsDownloadMenuOpen(!isDownloadMenuOpen)} className="flex items-center gap-2 border-2 border-primary text-primary px-4 py-2 rounded-lg font-bold text-sm hover:bg-primary hover:text-white transition-all h-[42px] cursor-pointer active:scale-95">
                                 <span className="material-symbols-outlined text-sm">download</span>
-                                Unduh Laporan (Excel/PDF)
+                                Unduh Laporan
                             </button>
+                            {isDownloadMenuOpen && (
+                                <div className="absolute right-0 top-full mt-2 w-48 bg-white dark:bg-[#1A1A1A] border border-slate-200 dark:border-[#333] rounded-xl shadow-lg z-20 overflow-hidden text-left">
+                                    <div className="p-2 flex flex-col gap-1">
+                                        <button className="flex items-center gap-3 p-2 text-sm text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-[#222] hover:text-primary rounded-lg transition-colors active:scale-95 text-left font-medium">
+                                            <span className="material-symbols-outlined text-[18px]">summarize</span> Excel (CSV)
+                                        </button>
+                                        <button className="flex items-center gap-3 p-2 text-sm text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-[#222] hover:text-primary rounded-lg transition-colors active:scale-95 text-left font-medium">
+                                            <span className="material-symbols-outlined text-[18px]">picture_as_pdf</span> PDF Report
+                                        </button>
+                                    </div>
+                                </div>
+                            )}
                         </div>
                     </div>
 
@@ -87,8 +124,8 @@ export default function History() {
                                         <td className="px-6 py-4">
                                             <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400">Success</span>
                                         </td>
-                                        <td className="px-6 py-4">
-                                            <button className="text-slate-400 hover:text-primary transition-colors"><span className="material-symbols-outlined">visibility</span></button>
+                                        <td className="px-6 py-4 text-right">
+                                            <ActionMenu id={1} currentOpenId={openActionId} setOpenId={setOpenActionId} />
                                         </td>
                                     </tr>
                                     <tr className="hover:bg-slate-50 dark:hover:bg-[#222]/50 transition-colors">
@@ -99,8 +136,8 @@ export default function History() {
                                         <td className="px-6 py-4">
                                             <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400">Failed (Return)</span>
                                         </td>
-                                        <td className="px-6 py-4">
-                                            <button className="text-slate-400 hover:text-primary transition-colors"><span className="material-symbols-outlined">visibility</span></button>
+                                        <td className="px-6 py-4 text-right">
+                                            <ActionMenu id={2} currentOpenId={openActionId} setOpenId={setOpenActionId} />
                                         </td>
                                     </tr>
                                     <tr className="hover:bg-slate-50 dark:hover:bg-[#222]/50 transition-colors">
@@ -111,8 +148,8 @@ export default function History() {
                                         <td className="px-6 py-4">
                                             <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400">Success</span>
                                         </td>
-                                        <td className="px-6 py-4">
-                                            <button className="text-slate-400 hover:text-primary transition-colors"><span className="material-symbols-outlined">visibility</span></button>
+                                        <td className="px-6 py-4 text-right">
+                                            <ActionMenu id={3} currentOpenId={openActionId} setOpenId={setOpenActionId} />
                                         </td>
                                     </tr>
                                     <tr className="hover:bg-slate-50 dark:hover:bg-[#222]/50 transition-colors">
@@ -123,8 +160,8 @@ export default function History() {
                                         <td className="px-6 py-4">
                                             <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400">Success</span>
                                         </td>
-                                        <td className="px-6 py-4">
-                                            <button className="text-slate-400 hover:text-primary transition-colors"><span className="material-symbols-outlined">visibility</span></button>
+                                        <td className="px-6 py-4 text-right">
+                                            <ActionMenu id={4} currentOpenId={openActionId} setOpenId={setOpenActionId} />
                                         </td>
                                     </tr>
                                     <tr className="hover:bg-slate-50 dark:hover:bg-[#222]/50 transition-colors">
@@ -135,14 +172,14 @@ export default function History() {
                                         <td className="px-6 py-4">
                                             <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400">Success</span>
                                         </td>
-                                        <td className="px-6 py-4">
-                                            <button className="text-slate-400 hover:text-primary transition-colors"><span className="material-symbols-outlined">visibility</span></button>
+                                        <td className="px-6 py-4 text-right">
+                                            <ActionMenu id={5} currentOpenId={openActionId} setOpenId={setOpenActionId} />
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
-                        
+
                         {/* Pagination */}
                         <div className="px-6 py-4 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between bg-white dark:bg-[#1a1a1a]">
                             <span className="text-sm text-slate-500 dark:text-slate-400">Menampilkan 1-10 dari 150 data</span>

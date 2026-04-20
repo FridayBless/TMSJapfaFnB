@@ -1,9 +1,40 @@
-
+import { useState } from "react";
 import Header from "../../components/Header";
 import { useNavigate } from "react-router-dom";
 
+const ActionMenu = ({ customerId, openId, setOpenId, navigate }: { customerId: string, openId: string | null, setOpenId: (id: string | null) => void, navigate: any }) => {
+    const isOpen = openId === customerId;
+    return (
+        <div className="relative inline-block text-left">
+            <button
+                onClick={(e) => { e.stopPropagation(); setOpenId(isOpen ? null : customerId); }}
+                className="material-symbols-outlined text-slate-400 hover:text-primary dark:hover:text-[#FF7A00] transition-colors text-[20px] active:scale-95 cursor-pointer"
+            >
+                more_vert
+            </button>
+            {isOpen && (
+                <div className="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white dark:bg-[#1A1A1A] ring-1 ring-black ring-opacity-5 z-10 border border-slate-200 dark:border-[#333]">
+                    <div className="py-1" role="menu">
+                        <button onClick={(e) => { e.stopPropagation(); navigate('/logistik/customers/edit'); setOpenId(null); }} className="w-full text-left px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-[#222] flex items-center gap-2">
+                            <span className="material-symbols-outlined text-[18px]">edit</span> Edit Customer
+                        </button>
+                        <button onClick={(e) => { e.stopPropagation(); alert('View Details'); setOpenId(null); }} className="w-full text-left px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-[#222] flex items-center gap-2">
+                            <span className="material-symbols-outlined text-[18px]">visibility</span> View Details
+                        </button>
+                        <button onClick={(e) => { e.stopPropagation(); alert('Deactivate'); setOpenId(null); }} className="w-full text-left px-4 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 flex items-center gap-2">
+                            <span className="material-symbols-outlined text-[18px]">block</span> Deactivate
+                        </button>
+                    </div>
+                </div>
+            )}
+        </div>
+    );
+};
+
 export default function CustomerData() {
     const navigate = useNavigate();
+    const [openActionId, setOpenActionId] = useState<string | null>(null);
+    const [isFilterOpen, setIsFilterOpen] = useState(false);
     return (
         <>
             <Header title="Customer Directory" />
@@ -96,9 +127,7 @@ export default function CustomerData() {
                                             <span>106.7621° E</span>
                                         </div>
                                     </td>
-                                    <td className="px-6 py-4 text-center">
-                                        <button onClick={() => navigate('/logistik/customers/edit')} className="material-symbols-outlined text-slate-400 hover:text-primary dark:hover:text-[#FF7A00] transition-colors text-[20px] active:scale-95">more_vert</button>
-                                    </td>
+                                    <ActionMenu customerId="C1092-JKT" openId={openActionId} setOpenId={setOpenActionId} navigate={navigate} />
                                 </tr>
                                 {/* Row 2 */}
                                 <tr className="bg-slate-50/50 dark:bg-[#1f1f1f] hover:bg-slate-50 dark:hover:bg-[#222] transition-colors group">
@@ -122,9 +151,7 @@ export default function CustomerData() {
                                             <span>106.6319° E</span>
                                         </div>
                                     </td>
-                                    <td className="px-6 py-4 text-center">
-                                        <button onClick={() => navigate('/logistik/customers/edit')} className="material-symbols-outlined text-slate-400 hover:text-primary dark:hover:text-[#FF7A00] transition-colors text-[20px] active:scale-95">more_vert</button>
-                                    </td>
+                                    <ActionMenu customerId="C2415-TNG" openId={openActionId} setOpenId={setOpenActionId} navigate={navigate} />
                                 </tr>
                                 {/* Row 3 */}
                                 <tr className="hover:bg-slate-50 dark:hover:bg-[#222] transition-colors group">
@@ -148,9 +175,7 @@ export default function CustomerData() {
                                             <span>106.9186° E</span>
                                         </div>
                                     </td>
-                                    <td className="px-6 py-4 text-center">
-                                        <button onClick={() => navigate('/logistik/customers/edit')} className="material-symbols-outlined text-slate-400 hover:text-primary dark:hover:text-[#FF7A00] transition-colors text-[20px] active:scale-95">more_vert</button>
-                                    </td>
+                                    <ActionMenu customerId="C0882-JKT" openId={openActionId} setOpenId={setOpenActionId} navigate={navigate} />
                                 </tr>
                                 {/* Row 4 */}
                                 <tr className="bg-slate-50/50 dark:bg-[#1f1f1f] hover:bg-slate-50 dark:hover:bg-[#222] transition-colors group">
@@ -174,9 +199,7 @@ export default function CustomerData() {
                                             <span>107.1706° E</span>
                                         </div>
                                     </td>
-                                    <td className="px-6 py-4 text-center">
-                                        <button onClick={() => navigate('/logistik/customers/edit')} className="material-symbols-outlined text-slate-400 hover:text-primary dark:hover:text-[#FF7A00] transition-colors text-[20px] active:scale-95">more_vert</button>
-                                    </td>
+                                    <ActionMenu customerId="C5521-BKS" openId={openActionId} setOpenId={setOpenActionId} navigate={navigate} />
                                 </tr>
                                 {/* Row 5 */}
                                 <tr className="hover:bg-slate-50 dark:hover:bg-[#222] transition-colors group">
@@ -200,9 +223,7 @@ export default function CustomerData() {
                                             <span>106.7968° E</span>
                                         </div>
                                     </td>
-                                    <td className="px-6 py-4 text-center">
-                                        <button onClick={() => navigate('/logistik/customers/edit')} className="material-symbols-outlined text-slate-400 hover:text-primary dark:hover:text-[#FF7A00] transition-colors text-[20px] active:scale-95">more_vert</button>
-                                    </td>
+                                    <ActionMenu customerId="C9902-SOU" openId={openActionId} setOpenId={setOpenActionId} navigate={navigate} />
                                 </tr>
                             </tbody>
                         </table>
@@ -211,6 +232,31 @@ export default function CustomerData() {
                     <div className="px-8 py-4 bg-slate-50 dark:bg-[#222] flex justify-between items-center border-t border-slate-200 dark:border-slate-800">
                         <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">Showing <span className="font-bold text-slate-900 dark:text-white">5</span> of <span className="font-bold text-slate-900 dark:text-white">1,284</span> entries</p>
                         <div className="flex items-center gap-2">
+                            <div className="relative">
+                                <button onClick={() => setIsFilterOpen(!isFilterOpen)} className="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-slate-600 dark:text-slate-300 bg-slate-50 dark:bg-[#222] border border-slate-200 dark:border-slate-700 rounded-lg transition-colors active:scale-95 duration-150">
+                                    <span className="material-symbols-outlined text-base">filter_list</span> Filter
+                                </button>
+                                {isFilterOpen && (
+                                    <div className="absolute right-0 bottom-full mb-2 w-56 bg-white dark:bg-[#1A1A1A] border border-slate-200 dark:border-[#333] rounded-xl shadow-lg z-20 overflow-hidden">
+                                        <div className="p-3 border-b border-slate-100 dark:border-[#333]">
+                                            <p className="text-xs font-bold text-slate-500 uppercase tracking-wider">Filter By Type</p>
+                                        </div>
+                                        <div className="p-2 flex flex-col gap-1">
+                                            <label className="flex items-center gap-2 p-2 hover:bg-slate-50 dark:hover:bg-[#222] rounded-lg cursor-pointer">
+                                                <input type="checkbox" className="rounded text-primary focus:ring-primary" />
+                                                <span className="text-sm dark:text-slate-300">Retail Partner</span>
+                                            </label>
+                                            <label className="flex items-center gap-2 p-2 hover:bg-slate-50 dark:hover:bg-[#222] rounded-lg cursor-pointer">
+                                                <input type="checkbox" className="rounded text-primary focus:ring-primary" />
+                                                <span className="text-sm dark:text-slate-300">Wholesale</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+                            <button onClick={() => alert("Export functionality coming soon")} className="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-white bg-primary rounded-lg hover:bg-primary/90 transition-colors active:scale-95 duration-150">
+                                <span className="material-symbols-outlined text-base">download</span> Export
+                            </button>
                             <button className="w-8 h-8 flex items-center justify-center rounded bg-white dark:bg-[#1a1a1a] border border-slate-200 dark:border-slate-700 text-slate-500 hover:text-[#FF7A00] transition-all">
                                 <span className="material-symbols-outlined text-[18px]">chevron_left</span>
                             </button>

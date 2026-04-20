@@ -1,6 +1,45 @@
+import { useState } from "react";
 import Header from "../../components/Header";
 
+const ActionMenu = ({ driverId, openId, setOpenId }: { driverId: string, openId: string | null, setOpenId: (id: string | null) => void }) => {
+    const isOpen = openId === driverId;
+    return (
+        <div className="relative inline-block text-left">
+            <button
+                onClick={(e) => { e.stopPropagation(); setOpenId(isOpen ? null : driverId); }}
+                className="p-1 hover:bg-slate-200 dark:bg-slate-700 rounded-lg text-slate-400 dark:text-slate-500 active:scale-95 cursor-pointer"
+            >
+                <span className="material-symbols-outlined">more_vert</span>
+            </button>
+            {isOpen && (
+                <div className="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white dark:bg-[#1A1A1A] ring-1 ring-black ring-opacity-5 z-10 border border-slate-200 dark:border-[#333]">
+                    <div className="py-1" role="menu" aria-orientation="vertical">
+                        <button onClick={(e) => { e.stopPropagation(); alert('View Profile'); setOpenId(null); }} className="w-full text-left px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-[#222] flex items-center gap-2">
+                            <span className="material-symbols-outlined text-[18px]">person</span> View Profile
+                        </button>
+                        <button onClick={(e) => { e.stopPropagation(); alert('Contact Driver'); setOpenId(null); }} className="w-full text-left px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-[#222] flex items-center gap-2">
+                            <span className="material-symbols-outlined text-[18px]">chat</span> Contact Driver
+                        </button>
+                        <button onClick={(e) => { e.stopPropagation(); alert('Assign Route'); setOpenId(null); }} className="w-full text-left px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-[#222] flex items-center gap-2">
+                            <span className="material-symbols-outlined text-[18px]">route</span> Assign Route
+                        </button>
+                        <button onClick={(e) => { e.stopPropagation(); alert('Download Report'); setOpenId(null); }} className="w-full text-left px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-[#222] flex items-center gap-2">
+                            <span className="material-symbols-outlined text-[18px]">download</span> Download Report
+                        </button>
+                        <button onClick={(e) => { e.stopPropagation(); alert('Suspend Driver'); setOpenId(null); }} className="w-full text-left px-4 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 flex items-center gap-2">
+                            <span className="material-symbols-outlined text-[18px]">block</span> Suspend
+                        </button>
+                    </div>
+                </div>
+            )}
+        </div>
+    );
+};
+
 export default function DriverPerformance() {
+    const [openActionId, setOpenActionId] = useState<string | null>(null);
+    const [isFilterOpen, setIsFilterOpen] = useState(false);
+
     return (
         <>
             <Header title="Driver List" />
@@ -17,10 +56,29 @@ export default function DriverPerformance() {
                             <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500 text-xl">search</span>
                             <input className="w-full pl-10 pr-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-none rounded-lg text-sm focus:ring-2 focus:ring-primary/20 focus:bg-white dark:bg-[#111111] transition-all outline-none" placeholder="Find Driver by name or ID..." type="text" />
                         </div>
-                        <button className="flex items-center gap-2 px-4 py-2.5 bg-white dark:bg-[#111111] border border-slate-200 dark:border-[#333] rounded-lg text-sm font-medium hover:bg-slate-50 dark:bg-[#1A1A1A] whitespace-nowrap">
-                            <span className="material-symbols-outlined text-sm">filter_list</span>
-                            Filter
-                        </button>
+                        <div className="relative">
+                            <button onClick={() => setIsFilterOpen(!isFilterOpen)} className="flex items-center gap-2 px-4 py-2.5 bg-white dark:bg-[#111111] border border-slate-200 dark:border-[#333] rounded-lg text-sm font-medium hover:bg-slate-50 dark:bg-[#1A1A1A] whitespace-nowrap cursor-pointer transition-all active:scale-95">
+                                <span className="material-symbols-outlined text-sm">filter_list</span>
+                                Filter
+                            </button>
+                            {isFilterOpen && (
+                                <div className="absolute right-0 mt-2 w-56 bg-white dark:bg-[#1A1A1A] border border-slate-200 dark:border-[#333] rounded-xl shadow-lg z-20 overflow-hidden">
+                                    <div className="p-3 border-b border-slate-100 dark:border-[#333]">
+                                        <p className="text-xs font-bold text-slate-500 uppercase tracking-wider">Filter By Status</p>
+                                    </div>
+                                    <div className="p-2 flex flex-col gap-1">
+                                        <label className="flex items-center gap-2 p-2 hover:bg-slate-50 dark:hover:bg-[#222] rounded-lg cursor-pointer">
+                                            <input type="checkbox" className="rounded text-primary focus:ring-primary" />
+                                            <span className="text-sm dark:text-slate-300">Active</span>
+                                        </label>
+                                        <label className="flex items-center gap-2 p-2 hover:bg-slate-50 dark:hover:bg-[#222] rounded-lg cursor-pointer">
+                                            <input type="checkbox" className="rounded text-primary focus:ring-primary" />
+                                            <span className="text-sm dark:text-slate-300">Off-duty</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
                     </div>
                 </div>
 
@@ -78,9 +136,7 @@ export default function DriverPerformance() {
                                     </td>
                                     <td className="px-6 py-4 text-sm font-mono text-slate-600">B 9044 JXS</td>
                                     <td className="px-6 py-4 text-right">
-                                        <button className="p-1 hover:bg-slate-200 dark:bg-slate-700 rounded-lg text-slate-400 dark:text-slate-500">
-                                            <span className="material-symbols-outlined">more_vert</span>
-                                        </button>
+                                        <ActionMenu driverId="DRV-102" openId={openActionId} setOpenId={setOpenActionId} />
                                     </td>
                                 </tr>
                                 {/* Expansion Content */}
@@ -159,9 +215,7 @@ export default function DriverPerformance() {
                                     </td>
                                     <td className="px-6 py-4 text-sm font-mono text-slate-600">B 9514 JXS</td>
                                     <td className="px-6 py-4 text-right">
-                                        <button className="p-1 hover:bg-slate-200 dark:bg-slate-700 rounded-lg text-slate-400 dark:text-slate-500">
-                                            <span className="material-symbols-outlined">more_vert</span>
-                                        </button>
+                                        <ActionMenu driverId="DRV-089" openId={openActionId} setOpenId={setOpenActionId} />
                                     </td>
                                 </tr>
                                 {/* Row 3 */}
@@ -204,9 +258,7 @@ export default function DriverPerformance() {
                                     </td>
                                     <td className="px-6 py-4 text-sm font-mono text-slate-600">B 9517 JXS</td>
                                     <td className="px-6 py-4 text-right">
-                                        <button className="p-1 hover:bg-slate-200 dark:bg-slate-700 rounded-lg text-slate-400 dark:text-slate-500">
-                                            <span className="material-symbols-outlined">more_vert</span>
-                                        </button>
+                                        <ActionMenu driverId="DRV-115" openId={openActionId} setOpenId={setOpenActionId} />
                                     </td>
                                 </tr>
                             </tbody>

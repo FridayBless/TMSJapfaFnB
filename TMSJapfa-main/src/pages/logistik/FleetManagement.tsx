@@ -1,6 +1,8 @@
+import { useState } from "react";
 import Header from "../../components/Header";
 
 export default function FleetManagement() {
+    const [isActionMenuOpen, setIsActionMenuOpen] = useState(false);
     return (
         <>
             <Header title="Fleet Health & Fuel Tracking" />
@@ -53,7 +55,7 @@ export default function FleetManagement() {
                     <div className="bg-white dark:bg-[#111111] rounded-xl border border-slate-200 dark:border-[#333] shadow-sm overflow-hidden">
                         <div className="px-6 py-4 border-b border-slate-200 dark:border-[#333] flex items-center justify-between">
                             <h3 className="font-bold text-lg">Fleet Status & Health</h3>
-                            <button className="text-primary text-sm font-semibold hover:underline">Export CSV</button>
+                            <button onClick={() => alert("Feature coming soon!")} className="text-primary text-sm font-semibold hover:underline cursor-pointer active:scale-95">Export CSV</button>
                         </div>
                         <div className="overflow-x-auto">
                             <table className="w-full text-left min-w-[800px]">
@@ -208,9 +210,26 @@ export default function FleetManagement() {
                             <h4 className="text-xl font-bold">TRK-01</h4>
                             <p className="text-slate-500 dark:text-slate-400 dark:text-slate-500 text-sm">Isuzu ELF • B 9044 JXS • Available</p>
                         </div>
-                        <button className="p-2 bg-slate-100 dark:bg-[#1A1A1A] rounded-lg hover:text-primary">
-                            <span className="material-symbols-outlined">more_horiz</span>
-                        </button>
+                        <div className="relative inline-block text-left">
+                            <button onClick={() => setIsActionMenuOpen(!isActionMenuOpen)} className="p-2 bg-slate-100 dark:bg-[#1A1A1A] rounded-lg hover:text-primary cursor-pointer active:scale-95 transition-all">
+                                <span className="material-symbols-outlined">more_horiz</span>
+                            </button>
+                            {isActionMenuOpen && (
+                                <div className="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white dark:bg-[#1A1A1A] ring-1 ring-black ring-opacity-5 z-10 border border-slate-200 dark:border-[#333]">
+                                    <div className="py-1" role="menu">
+                                        <button onClick={() => { alert('View Full Specs'); setIsActionMenuOpen(false); }} className="w-full text-left px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-[#222] flex items-center gap-2">
+                                            <span className="material-symbols-outlined text-[18px]">info</span> View Full Specs
+                                        </button>
+                                        <button onClick={() => { alert('Assign Driver'); setIsActionMenuOpen(false); }} className="w-full text-left px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-[#222] flex items-center gap-2">
+                                            <span className="material-symbols-outlined text-[18px]">person_add</span> Assign Driver
+                                        </button>
+                                        <button onClick={() => { alert('Report Issue'); setIsActionMenuOpen(false); }} className="w-full text-left px-4 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 flex items-center gap-2">
+                                            <span className="material-symbols-outlined text-[18px]">report</span> Report Issue
+                                        </button>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
                     </div>
 
                     {/* Health Radar Simulation */}
@@ -263,7 +282,7 @@ export default function FleetManagement() {
                             </div>
                         </div>
                     </div>
-                    <button className="w-full py-3 border-2 border-primary text-primary font-bold rounded-lg hover:bg-primary/5 transition-colors">
+                    <button onClick={() => alert("Feature coming soon!")} className="w-full py-3 border-2 border-primary text-primary font-bold rounded-lg hover:bg-primary/5 transition-colors cursor-pointer active:scale-95">
                         Schedule Service
                     </button>
                 </aside>
